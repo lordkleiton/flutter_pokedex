@@ -1,4 +1,4 @@
-import 'package:flutter_pokedex/models/base/named_api_resource.dart';
+import 'package:flutter_pokedex/models/common/named_api_resource.dart';
 
 class BerryFlavorMap {
   int potency;

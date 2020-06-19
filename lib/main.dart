@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pokedex/models/berries/berry.dart';
+import 'package:flutter_pokedex/models/berries/berry_firmness.dart';
 import 'package:flutter_pokedex/network/endpoints.dart';
 import 'package:flutter_pokedex/network/rest.dart';
 
@@ -34,8 +35,8 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
-    RestConnection.get('1', Endpoints.berry).then((value) {
-      print(Berry.fromJson(value));
+    RestConnection.get('1', Endpoints.berry_firmness).then((value) {
+      print(BerryFirmness.fromJson(value));
     }).catchError((e, s) {
       print(e);
       print(s);
