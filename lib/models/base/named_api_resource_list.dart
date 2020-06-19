@@ -1,5 +1,5 @@
-import 'package:flutter_pokedex/models/resource_list.dart';
-import 'package:flutter_pokedex/models/named_api_resource.dart';
+import 'package:flutter_pokedex/models/base/resource_list.dart';
+import 'package:flutter_pokedex/models/base/named_api_resource.dart';
 
 class NamedApiResourceList extends ResourceList {
   List<NamedApiResource> results;
@@ -12,5 +12,5 @@ class NamedApiResourceList extends ResourceList {
 
   @override
   String toString() =>
-      '${this.runtimeType} {count: $count, previous: $previous, next: $next, results: $results}';
+      '${runtimeType} {count: $count, previous: $previous, next: $next, results: $results}';
 }

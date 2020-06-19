@@ -1,4 +1,4 @@
-import 'package:flutter_pokedex/models/api_resource.dart';
+import 'package:flutter_pokedex/models/base/api_resource.dart';
 
 class NamedApiResource extends ApiResource {
   String name;
@@ -8,5 +8,5 @@ class NamedApiResource extends ApiResource {
         super.fromJson(json);
 
   @override
-  String toString() => '${this.runtimeType} {name: $name, url: $url}';
+  String toString() => '${runtimeType} {name: $name, url: $url}';
 }
