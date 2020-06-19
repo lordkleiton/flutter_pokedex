@@ -7,6 +7,9 @@ class Name extends HasLanguage {
       : name = json['name'],
         super.fromJson(json);
 
+  static List<Name> fromList(List<dynamic> list) =>
+      list.map((e) => Name.fromJson(e)).toList();
+
   @override
   toString() => '$runtimeType {name: $name, language: $language}';
 }

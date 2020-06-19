@@ -7,6 +7,9 @@ class NamedApiResource extends ApiResource {
       : name = json['name'],
         super.fromJson(json);
 
+  static List<NamedApiResource> fromList(List<dynamic> list) =>
+      list.map((e) => NamedApiResource.fromJson(e)).toList();
+
   @override
   String toString() => '$runtimeType {name: $name, url: $url}';
 }

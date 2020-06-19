@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pokedex/models/berries/berry.dart';
 import 'package:flutter_pokedex/models/berries/berry_firmness.dart';
 import 'package:flutter_pokedex/network/endpoints.dart';
 import 'package:flutter_pokedex/network/rest.dart';

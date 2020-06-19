@@ -10,12 +10,8 @@ class BerryFirmness {
   BerryFirmness.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         name = json['name'],
-        berries = (json['berries'] as List<dynamic>)
-            .map((e) => NamedApiResource.fromJson(e))
-            .toList(),
-        names = (json['names'] as List<dynamic>)
-            .map((e) => Name.fromJson(e))
-            .toList();
+        berries = NamedApiResource.fromList(json['berries']),
+        names = Name.fromList(json['names']);
 
   @override
   toString() =>
