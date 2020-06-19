@@ -8,5 +8,5 @@ class NamedApiResource extends ApiResource {
         super.fromJson(json);
 
   @override
-  String toString() => '${runtimeType} {name: $name, url: $url}';
+  String toString() => '$runtimeType {name: $name, url: $url}';
 }

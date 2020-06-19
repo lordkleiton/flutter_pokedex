@@ -9,5 +9,5 @@ class BerryFlavorMap {
         flavor = NamedApiResource.fromJson(json['flavor']);
 
   @override
-  String toString() => '${runtimeType} {potency: $potency, flavor: $flavor}';
+  String toString() => '$runtimeType {potency: $potency, flavor: $flavor}';
 }

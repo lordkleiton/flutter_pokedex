@@ -10,5 +10,5 @@ class ResourceList {
 
   @override
   String toString() =>
-      '${runtimeType} {count: $count, previous: $previous, next: $next}';
+      '$runtimeType {count: $count, previous: $previous, next: $next}';
 }

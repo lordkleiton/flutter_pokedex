@@ -12,5 +12,5 @@ class NamedApiResourceList extends ResourceList {
 
   @override
   String toString() =>
-      '${runtimeType} {count: $count, previous: $previous, next: $next, results: $results}';
+      '$runtimeType {count: $count, previous: $previous, next: $next, results: $results}';
 }
