@@ -1,10 +1,8 @@
 class ApiResource {
   String url;
 
-  ApiResource.fromJson(Map<String, dynamic> json) {
-    this.url = json['url'];
-  }
+  ApiResource.fromJson(Map<String, dynamic> json) : url = json['url'];
 
   @override
-  String toString() => 'ApiResource {url: ${this.url}}';
+  String toString() => '${this.runtimeType} {url: $url}';
 }

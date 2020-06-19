@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pokedex/models/named_api_resource.dart';
+import 'package:flutter_pokedex/models/named_api_resource_list.dart';
 import 'package:flutter_pokedex/network/endpoints.dart';
 import 'package:flutter_pokedex/network/rest.dart';
 
@@ -35,9 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() {
     RestConnection.find(Endpoints.berry, 50, 0).then((value) {
-      value['results'].forEach((v) {
-        print(NamedApiResource.fromJson(v));
-      });
+      print(NamedApiResourceList.fromJson(value));
     }).catchError((err) {
       print(err);
     });

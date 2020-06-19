@@ -21,7 +21,6 @@ abstract class RestConnection {
       await _request('$base_url/$endpoint?limit=$limit&offset=$skip');
 
   /// retorna json com dados da requisição em específico
-  static Future<Map<String, dynamic>> get(
-          String data, String endpoint, int limit, int skip) async =>
-      await _request('$base_url/$endpoint/$data?limit=$limit&offset=$skip');
+  static Future<Map<String, dynamic>> get(String data, String endpoint) async =>
+      await _request('$base_url/$endpoint/$data');
 }
