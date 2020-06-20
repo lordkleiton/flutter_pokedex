@@ -5,7 +5,7 @@ class NamedApiResource extends ApiResource {
 
   NamedApiResource.fromJson(Map<String, dynamic> json)
       : name = json['name'],
-        super.fromJson(json);
+        super.fromJson(json ?? {});
 
   static List<NamedApiResource> fromList(List<dynamic> list) =>
       list.map((e) => NamedApiResource.fromJson(e)).toList();

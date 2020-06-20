@@ -8,7 +8,7 @@ class VersionGroupFlavorText extends HasLanguage {
   VersionGroupFlavorText.fromJson(Map<String, dynamic> json)
       : text = json['text'],
         versionGroup = NamedApiResource.fromJson(json['version_group']),
-        super.fromJson(json);
+        super.fromJson(json ?? {});
 
   @override
   toString() =>

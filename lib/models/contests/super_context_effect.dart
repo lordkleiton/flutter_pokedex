@@ -10,8 +10,9 @@ class SuperContestEffect {
   SuperContestEffect.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         appeal = json['appeal'],
-        flavorTextEntries = FlavorText.fromList(json['flavor_text_entries']),
-        moves = NamedApiResource.fromList(json['moves']);
+        flavorTextEntries =
+            FlavorText.fromList(json['flavor_text_entries'] ?? []),
+        moves = NamedApiResource.fromList(json['moves'] ?? []);
 
   @override
   toString() =>

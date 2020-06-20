@@ -5,7 +5,7 @@ class Effect extends HasLanguage {
 
   Effect.fromJson(Map<String, dynamic> json)
       : effect = json['effect'],
-        super.fromJson(json);
+        super.fromJson(json ?? {});
 
   static List<Effect> fromList(List<dynamic> list) =>
       list.map((e) => Effect.fromJson(e)).toList();

@@ -12,8 +12,9 @@ class ContestEffect {
       : id = json['id'],
         appeal = json['appeal'],
         jam = json['jam'],
-        effectEntries = Effect.fromList(json['effect_entries']),
-        flavorTextEntries = FlavorText.fromList(json['flavor_text_entries']);
+        effectEntries = Effect.fromList(json['effect_entries'] ?? []),
+        flavorTextEntries =
+            FlavorText.fromList(json['flavor_text_entries'] ?? []);
 
   @override
   toString() =>

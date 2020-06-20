@@ -11,7 +11,7 @@ class ContestType {
       : id = json['id'],
         name = json['name'],
         berryFlavor = NamedApiResource.fromJson(json['berry_flavor']),
-        names = ContestName.fromList(json['names']);
+        names = ContestName.fromList(json['names'] ?? []);
 
   @override
   toString() =>

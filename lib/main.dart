@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pokedex/models/encounters/encounter_condition_value.dart';
+import 'package:flutter_pokedex/models/evolution/evolution_chain.dart';
+import 'package:flutter_pokedex/models/evolution/evolution_trigger.dart';
 import 'package:flutter_pokedex/network/endpoints.dart';
 import 'package:flutter_pokedex/network/rest.dart';
 
@@ -34,8 +36,8 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
-    RestConnection.get('1', Endpoints.encounter_condition_value).then((value) {
-      print(EncounterConditionValue.fromJson(value));
+    RestConnection.get('1', Endpoints.evolution_chain).then((value) {
+      print(EvolutionChain.fromJson(value));
     }).catchError((e, s) {
       print(e);
       print(s);

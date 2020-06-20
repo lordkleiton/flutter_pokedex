@@ -7,7 +7,7 @@ class ContestName extends HasLanguage {
   ContestName.fromJson(Map<String, dynamic> json)
       : name = json['name'],
         color = json['color'],
-        super.fromJson(json);
+        super.fromJson(json ?? {});
 
   static List<ContestName> fromList(List<dynamic> list) =>
       list.map((e) => ContestName.fromJson(e)).toList();

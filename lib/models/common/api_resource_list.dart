@@ -8,7 +8,7 @@ class ApiResourceList extends ResourceList {
       : results = (json['results'] as List<dynamic>)
             .map((e) => ApiResource.fromJson(e))
             .toList(),
-        super.fromJson(json);
+        super.fromJson(json ?? {});
 
   @override
   String toString() =>

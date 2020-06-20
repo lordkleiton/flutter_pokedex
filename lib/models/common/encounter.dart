@@ -10,9 +10,10 @@ class Encounter {
   Encounter.fromJson(Map<String, dynamic> json)
       : minLevel = json['min_level'],
         maxLevel = json['max_level'],
-        conditionValues = NamedApiResource.fromList(json['condition_values']),
+        conditionValues =
+            NamedApiResource.fromList(json['condition_values'] ?? []),
         chance = json['chance'],
-        method = NamedApiResource.fromList(json['method']);
+        method = NamedApiResource.fromList(json['method'] ?? []);
 
   @override
   String toString() =>

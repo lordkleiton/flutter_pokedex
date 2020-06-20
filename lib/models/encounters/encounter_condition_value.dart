@@ -11,7 +11,7 @@ class EncounterConditionValue {
       : id = json['id'],
         name = json['name'],
         condition = NamedApiResource.fromJson(json['condition']),
-        names = Name.fromList(json['names']);
+        names = Name.fromList(json['names'] ?? []);
 
   @override
   toString() =>

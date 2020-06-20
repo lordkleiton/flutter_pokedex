@@ -5,7 +5,7 @@ class Name extends HasLanguage {
 
   Name.fromJson(Map<String, dynamic> json)
       : name = json['name'],
-        super.fromJson(json);
+        super.fromJson(json ?? {});
 
   static List<Name> fromList(List<dynamic> list) =>
       list.map((e) => Name.fromJson(e)).toList();

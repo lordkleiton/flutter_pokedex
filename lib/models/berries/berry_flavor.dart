@@ -12,8 +12,8 @@ class BerryFlavor {
   BerryFlavor.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         name = json['name'],
-        berries = FlavorBerryMap.fromList(json['berries']),
-        names = Name.fromList(json['names']);
+        berries = FlavorBerryMap.fromList(json['berries'] ?? []),
+        names = Name.fromList(json['names'] ?? []);
 
   @override
   toString() =>

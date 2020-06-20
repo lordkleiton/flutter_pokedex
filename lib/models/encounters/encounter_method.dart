@@ -10,7 +10,7 @@ class EncounterMethod {
       : id = json['id'],
         name = json['name'],
         order = json['order'],
-        names = Name.fromList(json['names']);
+        names = Name.fromList(json['names'] ?? []);
 
   @override
   String toString() =>

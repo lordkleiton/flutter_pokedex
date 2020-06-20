@@ -7,7 +7,7 @@ class VerboseEffect extends HasLanguage {
   VerboseEffect.fromJson(Map<String, dynamic> json)
       : effect = json['effect'],
         shortEffect = json['short_effect'],
-        super.fromJson(json);
+        super.fromJson(json ?? {});
 
   @override
   toString() =>
