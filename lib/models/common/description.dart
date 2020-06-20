@@ -7,6 +7,9 @@ class Description extends HasLanguage {
       : description = json['description'],
         super.fromJson(json ?? {});
 
+  static List<Description> fromList(List<dynamic> list) =>
+      list.map((e) => Description.fromJson(e ?? {})).toList();
+
   @override
   toString() => '$runtimeType {description: $description, language: $language}';
 }
