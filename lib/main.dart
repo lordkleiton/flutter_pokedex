@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pokedex/models/contests/contest_effect.dart';
-import 'package:flutter_pokedex/models/contests/contest_type.dart';
-import 'package:flutter_pokedex/models/contests/super_context_effect.dart';
+import 'package:flutter_pokedex/models/encounters/encounter_condition_value.dart';
 import 'package:flutter_pokedex/network/endpoints.dart';
 import 'package:flutter_pokedex/network/rest.dart';
 
@@ -36,8 +34,8 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
-    RestConnection.get('1', Endpoints.super_contest_effect).then((value) {
-      print(SuperContestEffect.fromJson(value));
+    RestConnection.get('1', Endpoints.encounter_condition_value).then((value) {
+      print(EncounterConditionValue.fromJson(value));
     }).catchError((e, s) {
       print(e);
       print(s);
