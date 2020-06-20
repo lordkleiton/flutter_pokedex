@@ -10,6 +10,9 @@ class ApiResourceList extends ResourceList {
             .toList(),
         super.fromJson(json ?? {});
 
+  static List<ApiResourceList> fromList(List<dynamic> list) =>
+      list.map((e) => ApiResourceList.fromJson(e ?? {})).toList();
+
   @override
   String toString() =>
       '$runtimeType {count: $count, previous: $previous, next: $next, results: $results}';

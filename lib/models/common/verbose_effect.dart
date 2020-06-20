@@ -9,6 +9,9 @@ class VerboseEffect extends HasLanguage {
         shortEffect = json['short_effect'],
         super.fromJson(json ?? {});
 
+  static List<VerboseEffect> fromList(List<dynamic> list) =>
+      list.map((e) => VerboseEffect.fromJson(e ?? {})).toList();
+
   @override
   toString() =>
       '$runtimeType {effect: $effect, shortEffect: $shortEffect, language: $language}';

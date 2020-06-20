@@ -10,6 +10,9 @@ class VersionGroupFlavorText extends HasLanguage {
         versionGroup = NamedApiResource.fromJson(json['version_group']),
         super.fromJson(json ?? {});
 
+  static List<VersionGroupFlavorText> fromList(List<dynamic> list) =>
+      list.map((e) => VersionGroupFlavorText.fromJson(e ?? {})).toList();
+
   @override
   toString() =>
       '$runtimeType {text: $text, versionGroup: $versionGroup, language: $language}';

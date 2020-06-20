@@ -8,6 +8,9 @@ class ResourceList {
         next = json['next'],
         previous = json['previous'];
 
+  static List<ResourceList> fromList(List<dynamic> list) =>
+      list.map((e) => ResourceList.fromJson(e ?? {})).toList();
+
   @override
   String toString() =>
       '$runtimeType {count: $count, previous: $previous, next: $next}';

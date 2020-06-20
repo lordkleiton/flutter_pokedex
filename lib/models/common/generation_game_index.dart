@@ -8,6 +8,9 @@ class GenerationGameIndex {
       : gameIndex = json['game_index'],
         generation = NamedApiResource.fromJson(json['generation']);
 
+  static List<GenerationGameIndex> fromList(List<dynamic> list) =>
+      list.map((e) => GenerationGameIndex.fromJson(e ?? {})).toList();
+
   @override
   toString() => '$runtimeType {gameIndex: $gameIndex, generation: $generation}';
 }

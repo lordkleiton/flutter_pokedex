@@ -15,6 +15,9 @@ class Encounter {
         chance = json['chance'],
         method = NamedApiResource.fromList(json['method'] ?? []);
 
+  static List<Encounter> fromList(List<dynamic> list) =>
+      list.map((e) => Encounter.fromJson(e ?? {})).toList();
+
   @override
   String toString() =>
       '$runtimeType {minLevel: $minLevel, maxLevel: $maxLevel, conditionValues: $conditionValues, chance: $chance, method: $method}';

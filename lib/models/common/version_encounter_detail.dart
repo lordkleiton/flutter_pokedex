@@ -11,6 +11,9 @@ class VersionEncounterDetail {
         maxChance = json['max_chance'],
         encounterDetails = Encounter.fromJson(json['encounter_details']);
 
+  static List<VersionEncounterDetail> fromList(List<dynamic> list) =>
+      list.map((e) => VersionEncounterDetail.fromJson(e ?? {})).toList();
+
   @override
   toString() =>
       '$runtimeType {version: $version, maxChance: $maxChance, encounterDetails: $encounterDetails}';
