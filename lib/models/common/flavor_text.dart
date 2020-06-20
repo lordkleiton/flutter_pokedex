@@ -10,6 +10,9 @@ class FlavorText extends HasLanguage {
         version = json['version'],
         super.fromJson(json);
 
+  static List<FlavorText> fromList(List<dynamic> list) =>
+      list.map((e) => FlavorText.fromJson(e)).toList();
+
   @override
   toString() =>
       '$runtimeType {flavorText: $flavorText, version: $version, language: $language}';
