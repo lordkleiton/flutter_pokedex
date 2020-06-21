@@ -4,6 +4,7 @@ import 'package:flutter_pokedex/models/locations/location.dart';
 import 'package:flutter_pokedex/models/locations/location_area.dart';
 import 'package:flutter_pokedex/models/locations/pal_park_area.dart';
 import 'package:flutter_pokedex/models/locations/region.dart';
+import 'package:flutter_pokedex/models/machines/machines.dart';
 import 'package:flutter_pokedex/network/endpoints.dart';
 import 'package:flutter_pokedex/network/rest.dart';
 
@@ -36,13 +37,23 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  String msg = '';
 
   void _incrementCounter() {
-    RestConnection.get('1', Endpoints.region).then((value) {
-      print(Region.fromJson(value));
+    RestConnection.get('1', Endpoints.location_area).then((value) {
+      String res = LocationArea.fromJson(value).toString();
+      print(res);
+
+      setState(() {
+        msg = res;
+      });
     }).catchError((e, s) {
       print(e);
       print(s);
+
+      setState(() {
+        msg = e;
+      });
     });
 
     setState(() {
@@ -66,6 +77,13 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: 200,
+              child: SingleChildScrollView(
+                child: Text(msg),
+              ),
             ),
           ],
         ),
