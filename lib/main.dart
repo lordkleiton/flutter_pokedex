@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pokedex/models/items/item_pocket.dart';
+import 'package:flutter_pokedex/models/locations/location.dart';
+import 'package:flutter_pokedex/models/locations/location_area.dart';
+import 'package:flutter_pokedex/models/locations/pal_park_area.dart';
+import 'package:flutter_pokedex/models/locations/region.dart';
 import 'package:flutter_pokedex/network/endpoints.dart';
 import 'package:flutter_pokedex/network/rest.dart';
 
@@ -34,8 +38,8 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
-    RestConnection.get('1', Endpoints.item_pocket).then((value) {
-      print(ItemPocket.fromJson(value));
+    RestConnection.get('1', Endpoints.region).then((value) {
+      print(Region.fromJson(value));
     }).catchError((e, s) {
       print(e);
       print(s);

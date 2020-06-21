@@ -1,0 +1,23 @@
+import 'package:flutter_pokedex/models/common/generation_game_index.dart';
+import 'package:flutter_pokedex/models/common/name.dart';
+import 'package:flutter_pokedex/models/common/named_api_resource.dart';
+
+class Location {
+  int id;
+  String name;
+  NamedApiResource region;
+  List<Name> names;
+  List<GenerationGameIndex> gameIndices;
+  List<NamedApiResource> areas;
+
+  Location.fromJson(Map<String, dynamic> json)
+      : id = json['id'],
+        name = json['name'],
+        region = NamedApiResource.fromJson(json['region']),
+        gameIndices = GenerationGameIndex.fromList(json['game_indices']),
+        areas = NamedApiResource.fromList(json['areas']);
+
+  @override
+  toString() =>
+      '$runtimeType {id: $id, name: $name, region: $region, names: $names, gameIndices: $gameIndices, areas: $areas}';
+}
