@@ -5,7 +5,7 @@ class Encounter {
   int maxLevel;
   List<NamedApiResource> conditionValues;
   int chance;
-  List<NamedApiResource> method;
+  NamedApiResource method;
 
   Encounter.fromJson(Map<String, dynamic> json)
       : minLevel = json['min_level'],
@@ -13,7 +13,7 @@ class Encounter {
         conditionValues =
             NamedApiResource.fromList(json['condition_values'] ?? []),
         chance = json['chance'],
-        method = NamedApiResource.fromList(json['method'] ?? []);
+        method = NamedApiResource.fromJson(json['method'] ?? []);
 
   static List<Encounter> fromList(List<dynamic> list) =>
       list.map((e) => Encounter.fromJson(e ?? {})).toList();

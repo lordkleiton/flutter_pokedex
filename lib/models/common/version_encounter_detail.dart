@@ -4,12 +4,12 @@ import 'package:flutter_pokedex/models/common/named_api_resource.dart';
 class VersionEncounterDetail {
   NamedApiResource version;
   int maxChance;
-  Encounter encounterDetails;
+  List<Encounter> encounterDetails;
 
   VersionEncounterDetail.fromJson(Map<String, dynamic> json)
       : version = NamedApiResource.fromJson(json['version']),
         maxChance = json['max_chance'],
-        encounterDetails = Encounter.fromJson(json['encounter_details']);
+        encounterDetails = Encounter.fromList(json['encounter_details']);
 
   static List<VersionEncounterDetail> fromList(List<dynamic> list) =>
       list.map((e) => VersionEncounterDetail.fromJson(e ?? {})).toList();
