@@ -5,6 +5,13 @@ import 'package:flutter_pokedex/models/locations/location_area.dart';
 import 'package:flutter_pokedex/models/locations/pal_park_area.dart';
 import 'package:flutter_pokedex/models/locations/region.dart';
 import 'package:flutter_pokedex/models/machines/machines.dart';
+import 'package:flutter_pokedex/models/moves/move.dart';
+import 'package:flutter_pokedex/models/moves/move_ailment.dart';
+import 'package:flutter_pokedex/models/moves/move_battle_style.dart';
+import 'package:flutter_pokedex/models/moves/move_category.dart';
+import 'package:flutter_pokedex/models/moves/move_damage_class.dart';
+import 'package:flutter_pokedex/models/moves/move_learn_method.dart';
+import 'package:flutter_pokedex/models/moves/move_target.dart';
 import 'package:flutter_pokedex/network/endpoints.dart';
 import 'package:flutter_pokedex/network/rest.dart';
 
@@ -40,8 +47,8 @@ class _MyHomePageState extends State<MyHomePage> {
   String msg = '';
 
   void _incrementCounter() {
-    RestConnection.get('1', Endpoints.location_area).then((value) {
-      String res = LocationArea.fromJson(value).toString();
+    RestConnection.get('1', Endpoints.move_target).then((value) {
+      String res = MoveTarget.fromJson(value).toString();
       print(res);
 
       setState(() {
@@ -50,10 +57,6 @@ class _MyHomePageState extends State<MyHomePage> {
     }).catchError((e, s) {
       print(e);
       print(s);
-
-      setState(() {
-        msg = e;
-      });
     });
 
     setState(() {
