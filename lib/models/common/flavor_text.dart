@@ -7,8 +7,8 @@ class FlavorText extends HasLanguage {
 
   FlavorText.fromJson(Map<String, dynamic> json)
       : flavorText = json['flavor_text'],
-        version = json['version'],
-        super.fromJson(json ?? {});
+        version = NamedApiResource.fromJson(json['version'] ?? {}),
+        super.fromJson(json);
 
   static List<FlavorText> fromList(List<dynamic> list) =>
       list.map((e) => FlavorText.fromJson(e)).toList();
