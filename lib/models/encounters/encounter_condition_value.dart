@@ -1,5 +1,7 @@
+import 'package:flutter_pokedex/models/common/encounter.dart';
 import 'package:flutter_pokedex/models/common/name.dart';
 import 'package:flutter_pokedex/models/common/named_api_resource.dart';
+import 'package:flutter_pokedex/network/rest.dart';
 
 class EncounterConditionValue {
   int id;
@@ -12,6 +14,10 @@ class EncounterConditionValue {
         name = json['name'],
         condition = NamedApiResource.fromJson(json['condition']),
         names = Name.fromList(json['names'] ?? []);
+
+  static Future<EncounterConditionValue> get(String query) async =>
+      EncounterConditionValue.fromJson(
+          await RestConnection.get<Encounter>(query));
 
   @override
   toString() =>

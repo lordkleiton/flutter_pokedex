@@ -2,6 +2,7 @@ import 'package:flutter_pokedex/models/common/description.dart';
 import 'package:flutter_pokedex/models/common/name.dart';
 import 'package:flutter_pokedex/models/common/named_api_resource.dart';
 import 'package:flutter_pokedex/models/games/pokemon_entry.dart';
+import 'package:flutter_pokedex/network/rest.dart';
 
 class Pokedex {
   int id;
@@ -22,6 +23,9 @@ class Pokedex {
         pokemonEntries = PokemonEntry.fromList(json['pokemon_entries'] ?? []),
         region = NamedApiResource.fromJson(json['region'] ?? {}),
         versionGroups = NamedApiResource.fromList(json['version_groups'] ?? []);
+
+  static Future<Pokedex> get(String query) async =>
+      Pokedex.fromJson(await RestConnection.get<Pokedex>(query));
 
   @override
   toString() =>

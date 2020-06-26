@@ -1,6 +1,7 @@
 import 'package:flutter_pokedex/models/common/name.dart';
 import 'package:flutter_pokedex/models/common/named_api_resource.dart';
 import 'package:flutter_pokedex/models/pokemon/pokemon_form_sprites.dart';
+import 'package:flutter_pokedex/network/rest.dart';
 
 class PokemonForm {
   int id;
@@ -31,6 +32,9 @@ class PokemonForm {
         versionGroup = NamedApiResource.fromJson(json['version_group'] ?? {}),
         names = Name.fromList(json['names'] ?? []),
         formNames = Name.fromList(json['form_names'] ?? []);
+
+  static Future<PokemonForm> get(String query) async =>
+      PokemonForm.fromJson(await RestConnection.get<PokemonForm>(query));
 
   @override
   toString() =>

@@ -1,5 +1,6 @@
 import 'package:flutter_pokedex/models/common/description.dart';
 import 'package:flutter_pokedex/models/common/named_api_resource.dart';
+import 'package:flutter_pokedex/network/rest.dart';
 
 class Characteristic {
   int id;
@@ -14,6 +15,9 @@ class Characteristic {
         possibleValues = List<int>.from(json['possible_values'] ?? []),
         highestStat = NamedApiResource.fromJson(json['highest_stat'] ?? {}),
         descriptions = Description.fromList(json['descriptions'] ?? []);
+
+  static Future<Characteristic> get(String query) async =>
+      Characteristic.fromJson(await RestConnection.get<Characteristic>(query));
 
   @override
   toString() =>

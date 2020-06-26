@@ -1,5 +1,6 @@
 import 'package:flutter_pokedex/models/common/name.dart';
 import 'package:flutter_pokedex/models/common/named_api_resource.dart';
+import 'package:flutter_pokedex/network/rest.dart';
 
 class PokemonColor {
   int id;
@@ -13,6 +14,9 @@ class PokemonColor {
         names = Name.fromList(json['names'] ?? []),
         pokemonSpecies =
             NamedApiResource.fromList(json['pokemon_species'] ?? []);
+
+  static Future<PokemonColor> get(String query) async =>
+      PokemonColor.fromJson(await RestConnection.get<PokemonColor>(query));
 
   @override
   toString() =>

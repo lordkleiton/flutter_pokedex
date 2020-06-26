@@ -1,8 +1,9 @@
 import 'dart:convert';
+import 'endpoints.dart';
 import 'package:http/http.dart' as http;
 
 abstract class RestConnection {
-  static const String base_url = 'https://pokeapi.co/api/v2';
+  static const String _base_url = 'https://pokeapi.co/api/v2';
 
   /// faz a request e retorna o json
   static Future<Map<String, dynamic>> _request(String url) async {
@@ -16,11 +17,11 @@ abstract class RestConnection {
   }
 
   /// retorna json com dados genéricos do endpoint
-  static Future<Map<String, dynamic>> find(
-          String endpoint, int limit, int skip) async =>
-      await _request('$base_url/$endpoint?limit=$limit&offset=$skip');
+  static Future<Map<String, dynamic>> find<T>(int limit, int skip) async =>
+      await _request(
+          '$_base_url/${Endpoints.getEndpoint<T>()}?limit=$limit&offset=$skip');
 
   /// retorna json com dados da requisição em específico
-  static Future<Map<String, dynamic>> get(String data, String endpoint) async =>
-      await _request('$base_url/$endpoint/$data');
+  static Future<Map<String, dynamic>> get<T>(String query) async =>
+      await _request('$_base_url/${Endpoints.getEndpoint<T>()}/$query');
 }

@@ -1,5 +1,6 @@
 import 'package:flutter_pokedex/models/common/named_api_resource.dart';
 import 'package:flutter_pokedex/models/pokemon/pokemon_species_gender.dart';
+import 'package:flutter_pokedex/network/rest.dart';
 
 class Gender {
   int id;
@@ -14,6 +15,9 @@ class Gender {
             json['pokemon_species_details'] ?? []),
         requiredForEvolution =
             NamedApiResource.fromList(json['required_for_evolution'] ?? []);
+
+  static Future<Gender> get(String query) async =>
+      Gender.fromJson(await RestConnection.get<Gender>(query));
 
   @override
   toString() =>

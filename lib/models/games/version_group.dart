@@ -1,4 +1,5 @@
 import 'package:flutter_pokedex/models/common/named_api_resource.dart';
+import 'package:flutter_pokedex/network/rest.dart';
 
 class VersionGroup {
   int id;
@@ -22,6 +23,9 @@ class VersionGroup {
 
   static List<NamedApiResource> _h(List<dynamic> list) =>
       NamedApiResource.fromList(list ?? []);
+
+  static Future<VersionGroup> get(String query) async =>
+      VersionGroup.fromJson(await RestConnection.get<VersionGroup>(query));
 
   @override
   toString() =>

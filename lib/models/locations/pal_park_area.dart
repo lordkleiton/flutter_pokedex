@@ -1,5 +1,6 @@
 import 'package:flutter_pokedex/models/common/name.dart';
 import 'package:flutter_pokedex/models/locations/pal_park_encounter_species.dart';
+import 'package:flutter_pokedex/network/rest.dart';
 
 class PalParkArea {
   int id;
@@ -13,6 +14,9 @@ class PalParkArea {
         names = Name.fromList(json['names'] ?? []),
         pokemonEncounters =
             PalParkEncounterSpecies.fromList(json['pokemon_encounters'] ?? []);
+
+  static Future<PalParkArea> get(String query) async =>
+      PalParkArea.fromJson(await RestConnection.get<PalParkArea>(query));
 
   @override
   toString() =>

@@ -2,6 +2,7 @@ import 'package:flutter_pokedex/models/common/name.dart';
 import 'package:flutter_pokedex/models/common/named_api_resource.dart';
 import 'package:flutter_pokedex/models/locations/encounter_method_rate.dart';
 import 'package:flutter_pokedex/models/locations/pokemon_encounter.dart';
+import 'package:flutter_pokedex/network/rest.dart';
 
 class LocationArea {
   int id;
@@ -22,6 +23,9 @@ class LocationArea {
         names = Name.fromList(json['names'] ?? []),
         pokemonEncounters =
             PokemonEncounter.fromList(json['pokemon_encounters'] ?? []);
+
+  static Future<LocationArea> get(String query) async =>
+      LocationArea.fromJson(await RestConnection.get<LocationArea>(query));
 
   @override
   toString() =>

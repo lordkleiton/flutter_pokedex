@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pokedex/models/pokemon/type.dart';
-import 'package:flutter_pokedex/network/endpoints.dart';
+import 'package:flutter_pokedex/models/berries/berry_firmness.dart';
+import 'package:flutter_pokedex/models/common/api_resource_list.dart';
+import 'package:flutter_pokedex/models/pokemon/pokemon.dart';
 import 'package:flutter_pokedex/network/rest.dart';
 
 void main() {
@@ -35,14 +36,19 @@ class _MyHomePageState extends State<MyHomePage> {
   String msg = '';
 
   void _incrementCounter() {
-    RestConnection.get('5', Endpoints.type).then((value) {
-      String res = Type.fromJson(value).toString();
-      print(res);
+    BerryFirmness.get('1').then((value) {
+      print(value);
 
       setState(() {
-        msg = res;
+        msg = value.toString();
       });
-    }).catchError((e, s) {
+    })
+
+        /* RestConnection.find<Pokemon>(10, 0).then((value) {
+      print(ApiResourceList.fromJson(value));
+    }) */
+
+        .catchError((e, s) {
       print(e);
       print(s);
     });

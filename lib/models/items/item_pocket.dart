@@ -1,5 +1,6 @@
 import 'package:flutter_pokedex/models/common/name.dart';
 import 'package:flutter_pokedex/models/common/named_api_resource.dart';
+import 'package:flutter_pokedex/network/rest.dart';
 
 class ItemPocket {
   int id;
@@ -12,6 +13,9 @@ class ItemPocket {
         name = json['name'],
         categories = NamedApiResource.fromList(json['categories']),
         names = Name.fromList(json['names']);
+
+  static Future<ItemPocket> get(String query) async =>
+      ItemPocket.fromJson(await RestConnection.get<ItemPocket>(query));
 
   @override
   toString() =>

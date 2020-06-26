@@ -1,5 +1,6 @@
 import 'package:flutter_pokedex/models/common/name.dart';
 import 'package:flutter_pokedex/models/common/named_api_resource.dart';
+import 'package:flutter_pokedex/network/rest.dart';
 
 class EvolutionTrigger {
   int id;
@@ -13,6 +14,10 @@ class EvolutionTrigger {
         names = Name.fromList(json['names'] ?? []),
         pokemonSpecies =
             NamedApiResource.fromList(json['pokemon_species'] ?? []);
+
+  static Future<EvolutionTrigger> get(String query) async =>
+      EvolutionTrigger.fromJson(
+          await RestConnection.get<EvolutionTrigger>(query));
 
   @override
   toString() =>

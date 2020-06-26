@@ -6,6 +6,7 @@ import 'package:flutter_pokedex/models/common/named_api_resource.dart';
 import 'package:flutter_pokedex/models/pokemon/pal_park_encounter_area.dart';
 import 'package:flutter_pokedex/models/pokemon/pokemon_species_dex_entry.dart';
 import 'package:flutter_pokedex/models/pokemon/pokemon_species_variety.dart';
+import 'package:flutter_pokedex/network/rest.dart';
 
 class PokemonSpecies {
   int id;
@@ -63,6 +64,9 @@ class PokemonSpecies {
         formDescriptions =
             Description.fromList(json['form_descriptions'] ?? []),
         varieties = PokemonSpeciesVariety.fromList(json['varieties'] ?? []);
+
+  static Future<PokemonSpecies> get(String query) async =>
+      PokemonSpecies.fromJson(await RestConnection.get<PokemonSpecies>(query));
 
   @override
   toString() =>

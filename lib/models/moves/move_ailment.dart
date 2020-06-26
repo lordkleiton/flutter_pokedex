@@ -1,5 +1,6 @@
 import 'package:flutter_pokedex/models/common/name.dart';
 import 'package:flutter_pokedex/models/common/named_api_resource.dart';
+import 'package:flutter_pokedex/network/rest.dart';
 
 class MoveAilment {
   int id;
@@ -12,6 +13,9 @@ class MoveAilment {
         name = json['name'],
         moves = NamedApiResource.fromList(json['moves'] ?? []),
         names = Name.fromList(json['names'] ?? []);
+
+  static Future<MoveAilment> get(String query) async =>
+      MoveAilment.fromJson(await RestConnection.get<MoveAilment>(query));
 
   @override
   toString() =>

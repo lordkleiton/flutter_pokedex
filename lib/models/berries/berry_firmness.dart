@@ -1,5 +1,6 @@
 import 'package:flutter_pokedex/models/common/name.dart';
 import 'package:flutter_pokedex/models/common/named_api_resource.dart';
+import 'package:flutter_pokedex/network/rest.dart';
 
 class BerryFirmness {
   int id;
@@ -16,4 +17,7 @@ class BerryFirmness {
   @override
   toString() =>
       '$runtimeType {id: $id, name: $name, berries: $berries, names: $names}';
+
+  static Future<BerryFirmness> get(String query) async =>
+      BerryFirmness.fromJson(await RestConnection.get<BerryFirmness>(query));
 }

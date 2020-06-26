@@ -1,5 +1,6 @@
 import 'package:flutter_pokedex/models/common/effect.dart';
 import 'package:flutter_pokedex/models/common/named_api_resource.dart';
+import 'package:flutter_pokedex/network/rest.dart';
 
 class ItemFlingEffect {
   int id;
@@ -12,6 +13,10 @@ class ItemFlingEffect {
         name = json['name'],
         effectEntries = Effect.fromList(json['effect_entries']),
         items = NamedApiResource.fromList(json['items']);
+
+  static Future<ItemFlingEffect> get(String query) async =>
+      ItemFlingEffect.fromJson(
+          await RestConnection.get<ItemFlingEffect>(query));
 
   @override
   toString() =>

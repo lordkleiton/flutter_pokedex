@@ -1,5 +1,6 @@
 import 'package:flutter_pokedex/models/common/effect.dart';
 import 'package:flutter_pokedex/models/common/flavor_text.dart';
+import 'package:flutter_pokedex/network/rest.dart';
 
 class ContestEffect {
   int id;
@@ -15,6 +16,9 @@ class ContestEffect {
         effectEntries = Effect.fromList(json['effect_entries'] ?? []),
         flavorTextEntries =
             FlavorText.fromList(json['flavor_text_entries'] ?? []);
+
+  static Future<ContestEffect> get(String query) async =>
+      ContestEffect.fromJson(await RestConnection.get<ContestEffect>(query));
 
   @override
   toString() =>

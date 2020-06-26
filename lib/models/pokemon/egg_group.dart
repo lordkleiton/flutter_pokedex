@@ -1,5 +1,6 @@
 import 'package:flutter_pokedex/models/common/name.dart';
 import 'package:flutter_pokedex/models/common/named_api_resource.dart';
+import 'package:flutter_pokedex/network/rest.dart';
 
 class EggGroup {
   int id;
@@ -16,6 +17,9 @@ class EggGroup {
 
   static List<EggGroup> fromList(List<dynamic> list) =>
       list.map((e) => EggGroup.fromJson(e ?? {})).toList();
+
+  static Future<EggGroup> get(String query) async =>
+      EggGroup.fromJson(await RestConnection.get<EggGroup>(query));
 
   @override
   toString() =>

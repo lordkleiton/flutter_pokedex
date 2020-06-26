@@ -1,5 +1,6 @@
 import 'package:flutter_pokedex/models/common/flavor_text.dart';
 import 'package:flutter_pokedex/models/common/named_api_resource.dart';
+import 'package:flutter_pokedex/network/rest.dart';
 
 class SuperContestEffect {
   int id;
@@ -13,6 +14,10 @@ class SuperContestEffect {
         flavorTextEntries =
             FlavorText.fromList(json['flavor_text_entries'] ?? []),
         moves = NamedApiResource.fromList(json['moves'] ?? []);
+
+  static Future<SuperContestEffect> get(String query) async =>
+      SuperContestEffect.fromJson(
+          await RestConnection.get<SuperContestEffect>(query));
 
   @override
   toString() =>

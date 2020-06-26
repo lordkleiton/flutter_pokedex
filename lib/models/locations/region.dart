@@ -1,5 +1,6 @@
 import 'package:flutter_pokedex/models/common/name.dart';
 import 'package:flutter_pokedex/models/common/named_api_resource.dart';
+import 'package:flutter_pokedex/network/rest.dart';
 
 class Region {
   int id;
@@ -18,6 +19,9 @@ class Region {
         mainGeneration = NamedApiResource.fromJson(json['main_generation']),
         pokedexes = NamedApiResource.fromList(json['pokedexes'] ?? []),
         versionGroups = NamedApiResource.fromList(json['version_groups'] ?? []);
+
+  static Future<Region> get(String query) async =>
+      Region.fromJson(await RestConnection.get<Region>(query));
 
   @override
   toString() =>

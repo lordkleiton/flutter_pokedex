@@ -7,6 +7,7 @@ import 'package:flutter_pokedex/models/common/verbose_effect.dart';
 import 'package:flutter_pokedex/models/common/version_group_flavor_text.dart';
 import 'package:flutter_pokedex/models/items/item_holder_pokemon.dart';
 import 'package:flutter_pokedex/models/items/item_sprites.dart';
+import 'package:flutter_pokedex/network/rest.dart';
 
 class Item {
   int id;
@@ -43,6 +44,9 @@ class Item {
             ItemHolderPokemon.fromList(json['held_by_pokemon'] ?? []),
         babyTriggerFor = ApiResource.fromJson(json['baby_trigger_for'] ?? {}),
         machines = MachineVersiondetail.fromList(json['machines'] ?? []);
+
+  static Future<Item> get(String query) async =>
+      Item.fromJson(await RestConnection.get<Item>(query));
 
   @override
   toString() =>

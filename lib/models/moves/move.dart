@@ -9,6 +9,7 @@ import 'package:flutter_pokedex/models/moves/move_meta_data.dart';
 import 'package:flutter_pokedex/models/moves/move_stat_change.dart';
 import 'package:flutter_pokedex/models/moves/past_move_stat_values.dart';
 import 'package:flutter_pokedex/models/pokemon/ability_effect_change.dart';
+import 'package:flutter_pokedex/network/rest.dart';
 
 class Move {
   int id;
@@ -62,6 +63,9 @@ class Move {
             ApiResource.fromJson(json['super_contest_effect'] ?? {}),
         target = NamedApiResource.fromJson(json['target'] ?? {}),
         type = NamedApiResource.fromJson(json['type'] ?? {});
+
+  static Future<Move> get(String query) async =>
+      Move.fromJson(await RestConnection.get<Move>(query));
 
   @override
   toString() =>

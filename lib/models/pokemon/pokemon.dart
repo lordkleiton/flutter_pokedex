@@ -6,6 +6,7 @@ import 'package:flutter_pokedex/models/pokemon/pokemon_move.dart';
 import 'package:flutter_pokedex/models/pokemon/pokemon_sprites.dart';
 import 'package:flutter_pokedex/models/pokemon/pokemon_stat.dart';
 import 'package:flutter_pokedex/models/pokemon/pokemon_type.dart';
+import 'package:flutter_pokedex/network/rest.dart';
 
 class Pokemon {
   int id;
@@ -44,6 +45,9 @@ class Pokemon {
         species = NamedApiResource.fromJson(json['species'] ?? {}),
         stats = PokemonStat.fromList(json['stats'] ?? {}),
         types = PokemonType.fromList(json['types'] ?? []);
+
+  static Future<Pokemon> get(String query) async =>
+      Pokemon.fromJson(await RestConnection.get<Pokemon>(query));
 
   @override
   toString() =>

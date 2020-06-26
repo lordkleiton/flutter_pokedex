@@ -1,5 +1,6 @@
 import 'package:flutter_pokedex/models/common/name.dart';
 import 'package:flutter_pokedex/models/common/named_api_resource.dart';
+import 'package:flutter_pokedex/network/rest.dart';
 
 class Generation {
   int id;
@@ -25,6 +26,9 @@ class Generation {
 
   static List<NamedApiResource> _h(List<dynamic> list) =>
       NamedApiResource.fromList(list ?? []);
+
+  static Future<Generation> get(String query) async =>
+      Generation.fromJson(await RestConnection.get<Generation>(query));
 
   @override
   toString() =>

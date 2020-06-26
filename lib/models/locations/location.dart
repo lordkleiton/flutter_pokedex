@@ -1,6 +1,7 @@
 import 'package:flutter_pokedex/models/common/generation_game_index.dart';
 import 'package:flutter_pokedex/models/common/name.dart';
 import 'package:flutter_pokedex/models/common/named_api_resource.dart';
+import 'package:flutter_pokedex/network/rest.dart';
 
 class Location {
   int id;
@@ -16,6 +17,9 @@ class Location {
         region = NamedApiResource.fromJson(json['region']),
         gameIndices = GenerationGameIndex.fromList(json['game_indices']),
         areas = NamedApiResource.fromList(json['areas']);
+
+  static Future<Location> get(String query) async =>
+      Location.fromJson(await RestConnection.get<Location>(query));
 
   @override
   toString() =>

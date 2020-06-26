@@ -4,6 +4,7 @@ import 'package:flutter_pokedex/models/common/verbose_effect.dart';
 import 'package:flutter_pokedex/models/pokemon/ability_effect_change.dart';
 import 'package:flutter_pokedex/models/pokemon/ability_flavor_text.dart';
 import 'package:flutter_pokedex/models/pokemon/ability_pokemon.dart';
+import 'package:flutter_pokedex/network/rest.dart';
 
 class Ability {
   int id;
@@ -27,6 +28,9 @@ class Ability {
         flavorTextEntries =
             AbilityFlavorText.fromList(json['flavor_text_entries']),
         pokemon = AbilityPokemon.fromList(json['pokemon'] ?? []);
+
+  static Future<Ability> get(String query) async =>
+      Ability.fromJson(await RestConnection.get<Ability>(query));
 
   @override
   toString() =>

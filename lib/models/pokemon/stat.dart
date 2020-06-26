@@ -3,6 +3,7 @@ import 'package:flutter_pokedex/models/common/name.dart';
 import 'package:flutter_pokedex/models/common/named_api_resource.dart';
 import 'package:flutter_pokedex/models/pokemon/move_stat_affect_sets.dart';
 import 'package:flutter_pokedex/models/pokemon/nature_stat_affect_sets.dart';
+import 'package:flutter_pokedex/network/rest.dart';
 
 class Stat {
   int id;
@@ -28,6 +29,9 @@ class Stat {
         moveDamageClass =
             NamedApiResource.fromJson(json['move_damage_class'] ?? {}),
         names = Name.fromList(json['names'] ?? []);
+
+  static Future<Stat> get(String query) async =>
+      Stat.fromJson(await RestConnection.get<Stat>(query));
 
   @override
   toString() =>

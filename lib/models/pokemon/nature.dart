@@ -2,6 +2,7 @@ import 'package:flutter_pokedex/models/common/name.dart';
 import 'package:flutter_pokedex/models/common/named_api_resource.dart';
 import 'package:flutter_pokedex/models/pokemon/move_battle_style_preference.dart';
 import 'package:flutter_pokedex/models/pokemon/nature_stat_change.dart';
+import 'package:flutter_pokedex/network/rest.dart';
 
 class Nature {
   int id;
@@ -26,6 +27,9 @@ class Nature {
         moveBattleStylePreferences = MoveBattleStylePreference.fromList(
             json['move_battle_style_preferences'] ?? []),
         names = Name.fromList(json['names'] ?? []);
+
+  static Future<Nature> get(String query) async =>
+      Nature.fromJson(await RestConnection.get<Nature>(query));
 
   @override
   toString() =>

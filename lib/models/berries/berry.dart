@@ -1,5 +1,6 @@
 import 'package:flutter_pokedex/models/common/named_api_resource.dart';
 import 'package:flutter_pokedex/models/berries/berry_flavor_map.dart';
+import 'package:flutter_pokedex/network/rest.dart';
 
 class Berry {
   int id;
@@ -30,6 +31,9 @@ class Berry {
             .toList(),
         item = NamedApiResource.fromJson(json['item']),
         naturalGiftType = NamedApiResource.fromJson(json['natural_gift_type']);
+
+  static Future<Berry> get(String query) async =>
+      Berry.fromJson(await RestConnection.get<Berry>(query));
 
   @override
   String toString() =>

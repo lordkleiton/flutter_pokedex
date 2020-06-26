@@ -1,5 +1,6 @@
 import 'package:flutter_pokedex/models/common/named_api_resource.dart';
 import 'package:flutter_pokedex/models/evolution/chain_link.dart';
+import 'package:flutter_pokedex/network/rest.dart';
 
 class EvolutionChain {
   int id;
@@ -11,6 +12,9 @@ class EvolutionChain {
         babyTriggerItem =
             NamedApiResource.fromJson(json['baby_trigger_item'] ?? {}),
         chain = ChainLink.fromJson(json['chain']);
+
+  static Future<EvolutionChain> get(String query) async =>
+      EvolutionChain.fromJson(await RestConnection.get<EvolutionChain>(query));
 
   @override
   toString() =>

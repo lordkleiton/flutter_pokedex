@@ -1,4 +1,5 @@
 import 'package:flutter_pokedex/models/common/name.dart';
+import 'package:flutter_pokedex/network/rest.dart';
 
 class EncounterMethod {
   int id;
@@ -11,6 +12,10 @@ class EncounterMethod {
         name = json['name'],
         order = json['order'],
         names = Name.fromList(json['names'] ?? []);
+
+  static Future<EncounterMethod> get(String query) async =>
+      EncounterMethod.fromJson(
+          await RestConnection.get<EncounterMethod>(query));
 
   @override
   String toString() =>

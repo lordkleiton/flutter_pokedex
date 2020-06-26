@@ -1,6 +1,7 @@
 import 'package:flutter_pokedex/models/common/description.dart';
 import 'package:flutter_pokedex/models/common/name.dart';
 import 'package:flutter_pokedex/models/common/named_api_resource.dart';
+import 'package:flutter_pokedex/network/rest.dart';
 
 class MoveLearnMethod {
   int id;
@@ -15,6 +16,10 @@ class MoveLearnMethod {
         descriptions = Description.fromList(json['descriptions'] ?? []),
         names = Name.fromList(json['names'] ?? []),
         versionGroups = NamedApiResource.fromList(json['version_groups'] ?? []);
+
+  static Future<MoveLearnMethod> get(String query) async =>
+      MoveLearnMethod.fromJson(
+          await RestConnection.get<MoveLearnMethod>(query));
 
   @override
   toString() =>
