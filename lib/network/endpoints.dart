@@ -18,6 +18,7 @@ import 'package:flutter_pokedex/models/items/item_attribute.dart';
 import 'package:flutter_pokedex/models/items/item_category.dart';
 import 'package:flutter_pokedex/models/items/item_fling_effect.dart';
 import 'package:flutter_pokedex/models/items/item_pocket.dart';
+import 'package:flutter_pokedex/models/languages/language.dart';
 import 'package:flutter_pokedex/models/locations/location.dart';
 import 'package:flutter_pokedex/models/locations/location_area.dart';
 import 'package:flutter_pokedex/models/locations/pal_park_area.dart';
@@ -114,6 +115,9 @@ abstract class Endpoints {
   static const String _stat = 'stat';
   static const String _type = 'type';
 
+  //language
+  static const String _language = 'language';
+
   // retorna o endpoint correto baseado no tipo
   static String getEndpoint<T>() {
     if (T == Berry) return _berry;
@@ -163,6 +167,7 @@ abstract class Endpoints {
     if (T == PokemonSpecies) return _pokemon_species;
     if (T == Stat) return _stat;
     if (T == Type) return _type;
+    if (T == Language) return _language;
 
     return null;
   }
