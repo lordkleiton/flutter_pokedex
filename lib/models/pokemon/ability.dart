@@ -1,5 +1,6 @@
 import 'package:flutter_pokedex/models/common/name.dart';
 import 'package:flutter_pokedex/models/common/named_api_resource.dart';
+import 'package:flutter_pokedex/models/common/named_api_resource_list.dart';
 import 'package:flutter_pokedex/models/common/verbose_effect.dart';
 import 'package:flutter_pokedex/models/pokemon/ability_effect_change.dart';
 import 'package:flutter_pokedex/models/pokemon/ability_flavor_text.dart';
@@ -31,6 +32,11 @@ class Ability {
 
   static Future<Ability> get(String query) async =>
       Ability.fromJson(await RestConnection.get<Ability>(query));
+
+  static Future<NamedApiResourceList> find(
+          [int limit = 0, int skip = 0]) async =>
+      NamedApiResourceList.fromJson(
+          await RestConnection.find<Ability>(limit, skip));
 
   @override
   toString() =>

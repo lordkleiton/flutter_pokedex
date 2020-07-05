@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pokedex/models/berries/berry_firmness.dart';
-import 'package:flutter_pokedex/models/common/api_resource_list.dart';
-import 'package:flutter_pokedex/models/pokemon/pokemon.dart';
-import 'package:flutter_pokedex/network/rest.dart';
+import 'package:flutter_pokedex/models/berries/berry.dart';
 
 void main() {
   runApp(MyApp());
@@ -32,25 +29,26 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final TextEditingController _ctrl = TextEditingController();
   int _counter = 0;
-  String msg = '';
+  String _msg = '';
 
   void _incrementCounter() {
-    BerryFirmness.get('1').then((value) {
+    Berry.find()
+        //Pokemon.get(_ctrl.text)
+        .then((value) {
       print(value);
 
       setState(() {
-        msg = value.toString();
+        _msg = value.toString();
       });
-    })
-
-        /* RestConnection.find<Pokemon>(10, 0).then((value) {
-      print(ApiResourceList.fromJson(value));
-    }) */
-
-        .catchError((e, s) {
+    }).catchError((e, s) {
       print(e);
       print(s);
+
+      setState(() {
+        _msg = 'erro ' + e.toString();
+      });
     });
 
     setState(() {
@@ -68,6 +66,15 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Container(
+              margin: EdgeInsets.only(bottom: 10.0),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: TextFormField(
+                  controller: _ctrl,
+                ),
+              ),
+            ),
             Text(
               'You have pushed the button this many times:',
             ),
@@ -79,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
               width: MediaQuery.of(context).size.width,
               height: 200,
               child: SingleChildScrollView(
-                child: Text(msg),
+                child: Text(_msg),
               ),
             ),
           ],

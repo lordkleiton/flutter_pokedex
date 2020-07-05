@@ -3,6 +3,7 @@ import 'package:flutter_pokedex/models/common/description.dart';
 import 'package:flutter_pokedex/models/common/flavor_text.dart';
 import 'package:flutter_pokedex/models/common/name.dart';
 import 'package:flutter_pokedex/models/common/named_api_resource.dart';
+import 'package:flutter_pokedex/models/common/named_api_resource_list.dart';
 import 'package:flutter_pokedex/models/pokemon/pal_park_encounter_area.dart';
 import 'package:flutter_pokedex/models/pokemon/pokemon_species_dex_entry.dart';
 import 'package:flutter_pokedex/models/pokemon/pokemon_species_variety.dart';
@@ -67,6 +68,11 @@ class PokemonSpecies {
 
   static Future<PokemonSpecies> get(String query) async =>
       PokemonSpecies.fromJson(await RestConnection.get<PokemonSpecies>(query));
+
+  static Future<NamedApiResourceList> find(
+          [int limit = 0, int skip = 0]) async =>
+      NamedApiResourceList.fromJson(
+          await RestConnection.find<PokemonSpecies>(limit, skip));
 
   @override
   toString() =>

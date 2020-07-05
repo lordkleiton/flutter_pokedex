@@ -1,5 +1,6 @@
 import 'package:flutter_pokedex/models/common/name.dart';
 import 'package:flutter_pokedex/models/common/named_api_resource.dart';
+import 'package:flutter_pokedex/models/common/named_api_resource_list.dart';
 import 'package:flutter_pokedex/models/locations/encounter_method_rate.dart';
 import 'package:flutter_pokedex/models/locations/pokemon_encounter.dart';
 import 'package:flutter_pokedex/network/rest.dart';
@@ -26,6 +27,11 @@ class LocationArea {
 
   static Future<LocationArea> get(String query) async =>
       LocationArea.fromJson(await RestConnection.get<LocationArea>(query));
+
+  static Future<NamedApiResourceList> find(
+          [int limit = 0, int skip = 0]) async =>
+      NamedApiResourceList.fromJson(
+          await RestConnection.find<LocationArea>(limit, skip));
 
   @override
   toString() =>

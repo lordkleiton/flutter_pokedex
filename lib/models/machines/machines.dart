@@ -1,3 +1,4 @@
+import 'package:flutter_pokedex/models/common/api_resource_list.dart';
 import 'package:flutter_pokedex/models/common/named_api_resource.dart';
 import 'package:flutter_pokedex/network/rest.dart';
 
@@ -15,6 +16,9 @@ class Machine {
 
   static Future<Machine> get(String query) async =>
       Machine.fromJson(await RestConnection.get<Machine>(query));
+
+  static Future<ApiResourceList> find([int limit = 0, int skip = 0]) async =>
+      ApiResourceList.fromJson(await RestConnection.find<Machine>(limit, skip));
 
   @override
   toString() =>

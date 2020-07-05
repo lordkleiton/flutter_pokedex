@@ -1,4 +1,5 @@
 import 'package:flutter_pokedex/models/common/named_api_resource.dart';
+import 'package:flutter_pokedex/models/common/named_api_resource_list.dart';
 import 'package:flutter_pokedex/models/pokemon/pokemon_species_gender.dart';
 import 'package:flutter_pokedex/network/rest.dart';
 
@@ -18,6 +19,11 @@ class Gender {
 
   static Future<Gender> get(String query) async =>
       Gender.fromJson(await RestConnection.get<Gender>(query));
+
+  static Future<NamedApiResourceList> find(
+          [int limit = 0, int skip = 0]) async =>
+      NamedApiResourceList.fromJson(
+          await RestConnection.find<Gender>(limit, skip));
 
   @override
   toString() =>

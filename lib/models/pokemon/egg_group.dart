@@ -1,5 +1,6 @@
 import 'package:flutter_pokedex/models/common/name.dart';
 import 'package:flutter_pokedex/models/common/named_api_resource.dart';
+import 'package:flutter_pokedex/models/common/named_api_resource_list.dart';
 import 'package:flutter_pokedex/network/rest.dart';
 
 class EggGroup {
@@ -20,6 +21,11 @@ class EggGroup {
 
   static Future<EggGroup> get(String query) async =>
       EggGroup.fromJson(await RestConnection.get<EggGroup>(query));
+
+  static Future<NamedApiResourceList> find(
+          [int limit = 0, int skip = 0]) async =>
+      NamedApiResourceList.fromJson(
+          await RestConnection.find<EggGroup>(limit, skip));
 
   @override
   toString() =>

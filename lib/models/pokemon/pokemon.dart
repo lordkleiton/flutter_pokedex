@@ -1,4 +1,5 @@
 import 'package:flutter_pokedex/models/common/named_api_resource.dart';
+import 'package:flutter_pokedex/models/common/named_api_resource_list.dart';
 import 'package:flutter_pokedex/models/common/version_game_index.dart';
 import 'package:flutter_pokedex/models/pokemon/pokemon_ability.dart';
 import 'package:flutter_pokedex/models/pokemon/pokemon_held_item.dart';
@@ -48,6 +49,11 @@ class Pokemon {
 
   static Future<Pokemon> get(String query) async =>
       Pokemon.fromJson(await RestConnection.get<Pokemon>(query));
+
+  static Future<NamedApiResourceList> find(
+          [int limit = 0, int skip = 0]) async =>
+      NamedApiResourceList.fromJson(
+          await RestConnection.find<Pokemon>(limit, skip));
 
   @override
   toString() =>

@@ -1,4 +1,5 @@
 import 'package:flutter_pokedex/models/common/name.dart';
+import 'package:flutter_pokedex/models/common/named_api_resource_list.dart';
 import 'package:flutter_pokedex/models/locations/pal_park_encounter_species.dart';
 import 'package:flutter_pokedex/network/rest.dart';
 
@@ -17,6 +18,11 @@ class PalParkArea {
 
   static Future<PalParkArea> get(String query) async =>
       PalParkArea.fromJson(await RestConnection.get<PalParkArea>(query));
+
+  static Future<NamedApiResourceList> find(
+          [int limit = 0, int skip = 0]) async =>
+      NamedApiResourceList.fromJson(
+          await RestConnection.find<PalParkArea>(limit, skip));
 
   @override
   toString() =>

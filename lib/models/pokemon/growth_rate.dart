@@ -1,5 +1,6 @@
 import 'package:flutter_pokedex/models/common/description.dart';
 import 'package:flutter_pokedex/models/common/named_api_resource.dart';
+import 'package:flutter_pokedex/models/common/named_api_resource_list.dart';
 import 'package:flutter_pokedex/models/pokemon/growth_rate_experience_level.dart';
 import 'package:flutter_pokedex/network/rest.dart';
 
@@ -21,6 +22,11 @@ class GrowthRate {
 
   static Future<GrowthRate> get(String query) async =>
       GrowthRate.fromJson(await RestConnection.get<GrowthRate>(query));
+
+  static Future<NamedApiResourceList> find(
+          [int limit = 0, int skip = 0]) async =>
+      NamedApiResourceList.fromJson(
+          await RestConnection.find<GrowthRate>(limit, skip));
 
   @override
   toString() =>

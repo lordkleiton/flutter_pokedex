@@ -1,6 +1,7 @@
 import 'package:flutter_pokedex/models/common/description.dart';
 import 'package:flutter_pokedex/models/common/name.dart';
 import 'package:flutter_pokedex/models/common/named_api_resource.dart';
+import 'package:flutter_pokedex/models/common/named_api_resource_list.dart';
 import 'package:flutter_pokedex/network/rest.dart';
 
 class MoveTarget {
@@ -19,6 +20,11 @@ class MoveTarget {
 
   static Future<MoveTarget> get(String query) async =>
       MoveTarget.fromJson(await RestConnection.get<MoveTarget>(query));
+
+  static Future<NamedApiResourceList> find(
+          [int limit = 0, int skip = 0]) async =>
+      NamedApiResourceList.fromJson(
+          await RestConnection.find<MoveTarget>(limit, skip));
 
   @override
   toString() =>

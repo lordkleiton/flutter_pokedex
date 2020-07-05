@@ -1,6 +1,7 @@
 import 'package:flutter_pokedex/models/common/api_resource.dart';
 import 'package:flutter_pokedex/models/common/name.dart';
 import 'package:flutter_pokedex/models/common/named_api_resource.dart';
+import 'package:flutter_pokedex/models/common/named_api_resource_list.dart';
 import 'package:flutter_pokedex/models/pokemon/move_stat_affect_sets.dart';
 import 'package:flutter_pokedex/models/pokemon/nature_stat_affect_sets.dart';
 import 'package:flutter_pokedex/network/rest.dart';
@@ -32,6 +33,11 @@ class Stat {
 
   static Future<Stat> get(String query) async =>
       Stat.fromJson(await RestConnection.get<Stat>(query));
+
+  static Future<NamedApiResourceList> find(
+          [int limit = 0, int skip = 0]) async =>
+      NamedApiResourceList.fromJson(
+          await RestConnection.find<Stat>(limit, skip));
 
   @override
   toString() =>

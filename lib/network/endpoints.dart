@@ -5,7 +5,7 @@ import 'package:flutter_pokedex/models/contests/contest_effect.dart';
 import 'package:flutter_pokedex/models/contests/contest_type.dart';
 import 'package:flutter_pokedex/models/contests/super_contest_effect.dart';
 import 'package:flutter_pokedex/models/encounters/encounter_condition_value.dart';
-import 'package:flutter_pokedex/models/encounters/encounter_conditions.dart';
+import 'package:flutter_pokedex/models/encounters/encounter_condition.dart';
 import 'package:flutter_pokedex/models/encounters/encounter_method.dart';
 import 'package:flutter_pokedex/models/evolution/evolution_chain.dart';
 import 'package:flutter_pokedex/models/evolution/evolution_trigger.dart';

@@ -1,3 +1,4 @@
+import 'package:flutter_pokedex/models/common/api_resource_list.dart';
 import 'package:flutter_pokedex/models/common/description.dart';
 import 'package:flutter_pokedex/models/common/named_api_resource.dart';
 import 'package:flutter_pokedex/network/rest.dart';
@@ -18,6 +19,10 @@ class Characteristic {
 
   static Future<Characteristic> get(String query) async =>
       Characteristic.fromJson(await RestConnection.get<Characteristic>(query));
+
+  static Future<ApiResourceList> find([int limit = 0, int skip = 0]) async =>
+      ApiResourceList.fromJson(
+          await RestConnection.find<Characteristic>(limit, skip));
 
   @override
   toString() =>

@@ -3,6 +3,7 @@ import 'package:flutter_pokedex/models/common/generation_game_index.dart';
 import 'package:flutter_pokedex/models/common/machine_version_detail.dart';
 import 'package:flutter_pokedex/models/common/name.dart';
 import 'package:flutter_pokedex/models/common/named_api_resource.dart';
+import 'package:flutter_pokedex/models/common/named_api_resource_list.dart';
 import 'package:flutter_pokedex/models/common/verbose_effect.dart';
 import 'package:flutter_pokedex/models/common/version_group_flavor_text.dart';
 import 'package:flutter_pokedex/models/items/item_holder_pokemon.dart';
@@ -47,6 +48,11 @@ class Item {
 
   static Future<Item> get(String query) async =>
       Item.fromJson(await RestConnection.get<Item>(query));
+
+  static Future<NamedApiResourceList> find(
+          [int limit = 0, int skip = 0]) async =>
+      NamedApiResourceList.fromJson(
+          await RestConnection.find<Item>(limit, skip));
 
   @override
   toString() =>

@@ -1,3 +1,4 @@
+import 'package:flutter_pokedex/models/common/api_resource_list.dart';
 import 'package:flutter_pokedex/models/common/effect.dart';
 import 'package:flutter_pokedex/models/common/flavor_text.dart';
 import 'package:flutter_pokedex/network/rest.dart';
@@ -19,6 +20,10 @@ class ContestEffect {
 
   static Future<ContestEffect> get(String query) async =>
       ContestEffect.fromJson(await RestConnection.get<ContestEffect>(query));
+
+  static Future<ApiResourceList> find([int limit = 0, int skip = 0]) async =>
+      ApiResourceList.fromJson(
+          await RestConnection.find<ContestEffect>(limit, skip));
 
   @override
   toString() =>

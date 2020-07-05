@@ -1,5 +1,6 @@
 import 'package:flutter_pokedex/models/common/name.dart';
 import 'package:flutter_pokedex/models/common/named_api_resource.dart';
+import 'package:flutter_pokedex/models/common/named_api_resource_list.dart';
 import 'package:flutter_pokedex/models/pokemon/pokemon_form_sprites.dart';
 import 'package:flutter_pokedex/network/rest.dart';
 
@@ -35,6 +36,11 @@ class PokemonForm {
 
   static Future<PokemonForm> get(String query) async =>
       PokemonForm.fromJson(await RestConnection.get<PokemonForm>(query));
+
+  static Future<NamedApiResourceList> find(
+          [int limit = 0, int skip = 0]) async =>
+      NamedApiResourceList.fromJson(
+          await RestConnection.find<PokemonForm>(limit, skip));
 
   @override
   toString() =>
