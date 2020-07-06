@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pokedex/models/berries/berry.dart';
+import 'package:pokeapi_dart_lib/pokeapi_dart_lib.dart';
 
 void main() {
   runApp(MyApp());
@@ -34,9 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String _msg = '';
 
   void _incrementCounter() {
-    Berry.find()
-        //Pokemon.get(_ctrl.text)
-        .then((value) {
+    Pokemon.find().then((value) {
       print(value);
 
       setState(() {

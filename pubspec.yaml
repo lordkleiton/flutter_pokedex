@@ -1,5 +1,5 @@
 name: flutter_pokedex
-description: Uma pokédex em flutter.
+description: Um cliente completo da pokéapi em flutter.
 
 publish_to: "none"
 
@@ -14,7 +14,7 @@ dependencies:
 
   cupertino_icons: ^0.1.3
 
-  http: ^0.12.1
+  pokeapi_dart_lib: ^1.0.0
 
 dev_dependencies:
   flutter_test:

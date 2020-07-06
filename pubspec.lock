@@ -75,7 +75,7 @@ packages:
     source: sdk
     version: "0.0.0"
   http:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: http
       url: "https://pub.dartlang.org"
@@ -130,6 +130,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.4.0"
+  pokeapi_dart_lib:
+    dependency: "direct main"
+    description:
+      name: pokeapi_dart_lib
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   quiver:
     dependency: transitive
     description:
