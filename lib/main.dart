@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pokedex/state/app_state.dart';
+import 'package:flutter_pokedex/utils/state.dart';
 import 'package:pokeapi_dart_lib/pokeapi_dart_lib.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(
+        create: (context) => AppState(),
+        child: MyApp(),
+      ),
+    ],
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -14,86 +25,61 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
+  MyHomePage({Key key}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final TextEditingController _ctrl = TextEditingController();
-  int _counter = 0;
-  String _msg = '';
-
-  void _incrementCounter() {
-    Pokemon.find().then((value) {
-      print(value);
-
-      setState(() {
-        _msg = value.toString();
-      });
-    }).catchError((e, s) {
-      print(e);
-      print(s);
-
-      setState(() {
-        _msg = 'erro ' + e.toString();
-      });
-    });
-
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    final AppState appState = StateUtils.appState(context);
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text('pokemon'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              margin: EdgeInsets.only(bottom: 10.0),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: TextFormField(
-                  controller: _ctrl,
-                ),
-              ),
-            ),
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: 200,
-              child: SingleChildScrollView(
-                child: Text(_msg),
-              ),
-            ),
-          ],
+      body: SingleChildScrollView(
+        child: FutureBuilder(
+          future: Pokemon.find(60),
+          builder: (context, snapshot) {
+            if (!snapshot.hasData) return Container();
+
+            final NamedApiResourceList data = snapshot.data;
+            final List<Widget> children = data.results
+                .map(
+                  (e) => InkWell(
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      padding: EdgeInsets.symmetric(vertical: 10),
+                      child: Text(
+                        e.name,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    onTap: () {
+                      //print(QueryUtils.toQueryable(e.url));
+                      appState.getPokemon(e.url).then((value) {
+                        print(value);
+                      });
+                    },
+                  ),
+                )
+                .toList();
+
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: children,
+            );
+          },
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
       ),
     );
   }
