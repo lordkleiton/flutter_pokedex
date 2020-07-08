@@ -3,19 +3,18 @@ import 'package:flutter_pokedex/utils/query.dart';
 import 'package:pokeapi_dart_lib/pokeapi_dart_lib.dart';
 
 mixin AppStatePokemon {
-  List<Pokemon> _pokemons = [];
+  Map<int, Pokemon> _pokemons = {};
 
-  List<Pokemon> get pokemons => _pokemons;
+  Map<int, Pokemon> get pokemons => _pokemons;
 
-  Future<Pokemon> getPokemon(String query) async {
-    final int id = QueryUtils.toId(query);
+  Future<Pokemon> getPokemon(String url) async {
+    final int id = QueryUtils.toId(url);
 
-    Pokemon result = _pokemons.firstWhere((p) => p.name == query || p.id == id,
-        orElse: () => null);
+    Pokemon result = _pokemons[id];
 
     if (result == null) {
-      result = await compute(Pokemon.get, QueryUtils.toQueryable(query));
-      _pokemons.add(result);
+      result = await compute(Pokemon.get, id.toString());
+      _pokemons[id] = result;
     }
 
     return result;
