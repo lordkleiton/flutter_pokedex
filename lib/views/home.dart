@@ -1,8 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
+import 'package:flutter_pokedex/components/pokemon/select_pokemon.dart';
 import 'package:flutter_pokedex/components/utils/loading_spinner_circle.dart';
-import 'package:flutter_pokedex/state/app_state.dart';
-import 'package:flutter_pokedex/utils/state.dart';
+import 'package:flutter_pokedex/utils/pokemon.dart';
 import 'package:pokeapi_dart_lib/pokeapi_dart_lib.dart';
 
 class HomeView extends StatefulWidget {
@@ -14,23 +14,23 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   Future<NamedApiResourceList> future;
+  int a = 1;
 
   @override
   void initState() {
     super.initState();
 
-    future = Pokemon.find(60);
+    future = compute(PokemonUtils.find, {'limit': 5, 'skip': 0});
   }
 
   @override
   Widget build(BuildContext context) {
-    final AppState appState = StateUtils.appState(context);
-
     return Scaffold(
       appBar: AppBar(
         title: Text('pokemon'),
       ),
-      body: SingleChildScrollView(
+      body: Container(
+        height: 500,
         child: FutureBuilder(
           future: future,
           builder: (context, snapshot) {
@@ -42,27 +42,15 @@ class _HomeViewState extends State<HomeView> {
             final NamedApiResourceList data = snapshot.data;
             final List<Widget> children = data.results
                 .map(
-                  (e) => InkWell(
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      child: Text(
-                        e.name,
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    onTap: () {
-                      appState.getPokemon(e.url).then((value) {
-                        print(value);
-                      });
-                    },
+                  (e) => SelectPokemonComponent(
+                    data: e,
                   ),
                 )
                 .toList();
 
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: children,
+            return ListView.builder(
+              itemCount: children.length,
+              itemBuilder: (context, index) => children.elementAt(index),
             );
           },
         ),
