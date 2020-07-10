@@ -27,57 +27,92 @@ class PokemonSpriteGalleryWidget extends StatelessWidget {
     List<Widget> widgets = [];
 
     if (sprites.frontDefault != null) {
-      data.add(_SpriteAux(
+      data.add(
+        _SpriteAux(
           url: sprites.frontDefault,
           gender: _Gender._default,
           side: _Side.front,
-          shiny: false));
+          shiny: false,
+        ),
+      );
     }
-    if (sprites.backDefault != null)
-      data.add(_SpriteAux(
+
+    if (sprites.backDefault != null) {
+      data.add(
+        _SpriteAux(
           url: sprites.backDefault,
           gender: _Gender._default,
           side: _Side.back,
-          shiny: false));
+          shiny: false,
+        ),
+      );
+    }
 
-    if (sprites.frontFemale != null)
-      data.add(_SpriteAux(
+    if (sprites.frontFemale != null) {
+      data.add(
+        _SpriteAux(
           url: sprites.frontFemale,
           gender: _Gender.female,
           side: _Side.front,
-          shiny: false));
-    if (sprites.backFemale != null)
-      data.add(_SpriteAux(
+          shiny: false,
+        ),
+      );
+    }
+
+    if (sprites.backFemale != null) {
+      data.add(
+        _SpriteAux(
           url: sprites.backFemale,
           gender: _Gender.female,
           side: _Side.back,
-          shiny: false));
+          shiny: false,
+        ),
+      );
+    }
 
-    if (sprites.frontFemaleShiny != null)
-      data.add(_SpriteAux(
+    if (sprites.frontFemaleShiny != null) {
+      data.add(
+        _SpriteAux(
           url: sprites.frontFemaleShiny,
           gender: _Gender.female,
           side: _Side.front,
-          shiny: true));
-    if (sprites.backShinyFemale != null)
-      data.add(_SpriteAux(
+          shiny: true,
+        ),
+      );
+    }
+
+    if (sprites.backShinyFemale != null) {
+      data.add(
+        _SpriteAux(
           url: sprites.backShinyFemale,
           gender: _Gender.female,
           side: _Side.back,
-          shiny: true));
+          shiny: true,
+        ),
+      );
+    }
 
-    if (sprites.frontShiny != null)
-      data.add(_SpriteAux(
+    if (sprites.frontShiny != null) {
+      data.add(
+        _SpriteAux(
           url: sprites.frontShiny,
           gender: _Gender._default,
           side: _Side.front,
-          shiny: true));
-    if (sprites.backShiny != null)
-      data.add(_SpriteAux(
+          shiny: true,
+        ),
+      );
+    }
+
+    if (sprites.backShiny != null) {
+      data.add(
+        _SpriteAux(
           url: sprites.backShiny,
           gender: _Gender._default,
           side: _Side.back,
-          shiny: true));
+          shiny: true,
+        ),
+      );
+    }
 
     widgets = data
         .map(
