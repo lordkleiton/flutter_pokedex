@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pokedex/views/home.dart';
+import 'package:flutter_pokedex/views/pokemon.dart';
 
 abstract class Routes {
   static Route<dynamic> routeGenerator(RouteSettings settings) {
-    final Object args = settings.arguments;
+    final Map<String, dynamic> args =
+        settings.arguments as Map<String, dynamic>;
 
     switch (settings.name) {
       case '/':
         return _h(HomeView());
+      case '/pokemon':
+        return _h(PokemonView(
+          pokemon: args['pokemon'],
+        ));
       default:
         return _h(_err());
     }
