@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class LoadingSpinningCircle extends StatelessWidget {
-  LoadingSpinningCircle({Key key}) : super(key: key);
+class LoadingIndicatorWidget extends StatelessWidget {
+  LoadingIndicatorWidget({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

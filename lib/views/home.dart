@@ -36,7 +36,7 @@ class _HomeViewState extends State<HomeView> {
           builder: (context, snapshot) {
             if (!snapshot.hasData)
               return Center(
-                child: LoadingSpinningCircle(),
+                child: LoadingIndicatorWidget(),
               );
 
             final NamedApiResourceList data = snapshot.data;

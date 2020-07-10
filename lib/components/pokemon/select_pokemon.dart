@@ -37,7 +37,7 @@ class _SelectPokemonState extends State<SelectPokemonComponent> {
             width: 100,
             height: 100,
             padding: EdgeInsets.symmetric(vertical: 10),
-            child: LoadingSpinningCircle(),
+            child: LoadingIndicatorWidget(),
           );
         }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pokedex/components/pokemon/pokemon_sprite_gallery.dart';
+import 'package:flutter_pokedex/utils/extensions.dart';
 import 'package:pokeapi_dart_lib/pokeapi_dart_lib.dart';
 
 class PokemonView extends StatefulWidget {
@@ -18,7 +19,7 @@ class _PokemonViewState extends State<PokemonView> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(pokemon.name),
+        title: Text(pokemon.name.capitalize().eliminateDashes()),
       ),
       body: SingleChildScrollView(
         child: Column(
