@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pokedex/components/utils/sprite_gallery.dart';
+import 'package:flutter_pokedex/components/pokemon/pokemon_sprite_gallery.dart';
 import 'package:pokeapi_dart_lib/pokeapi_dart_lib.dart';
 
 class PokemonView extends StatefulWidget {
@@ -25,7 +25,7 @@ class _PokemonViewState extends State<PokemonView> {
           children: <Widget>[
             Container(
               height: 200,
-              child: SpriteGalleryWidget(
+              child: PokemonSpriteGalleryWidget(
                 sprites: pokemon.sprites,
               ),
             ),
