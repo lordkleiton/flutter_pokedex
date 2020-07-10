@@ -13,14 +13,13 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  Future<NamedApiResourceList> future;
-  int a = 1;
+  Future<NamedApiResourceList> _initialPokemons;
 
   @override
   void initState() {
     super.initState();
 
-    future = compute(PokemonUtils.find, {'limit': 5, 'skip': 0});
+    _initialPokemons = compute(PokemonUtils.find, {'limit': 1, 'skip': 0});
   }
 
   @override
@@ -32,7 +31,7 @@ class _HomeViewState extends State<HomeView> {
       body: Container(
         height: 500,
         child: FutureBuilder(
-          future: future,
+          future: _initialPokemons,
           builder: (context, snapshot) {
             if (!snapshot.hasData)
               return Center(

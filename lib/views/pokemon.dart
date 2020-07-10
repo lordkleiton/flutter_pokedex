@@ -1,25 +1,56 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pokedex/components/pokemon/pokemon_sprite_gallery.dart';
+import 'package:flutter_pokedex/state/app_state.dart';
 import 'package:flutter_pokedex/utils/extensions.dart';
+import 'package:flutter_pokedex/utils/query.dart';
+import 'package:flutter_pokedex/utils/state.dart';
 import 'package:pokeapi_dart_lib/pokeapi_dart_lib.dart';
 
 class PokemonView extends StatefulWidget {
   final Pokemon pokemon;
 
-  PokemonView({Key key, this.pokemon}) : super(key: key);
+  PokemonView({Key key, @required this.pokemon}) : super(key: key);
 
   @override
   _PokemonViewState createState() => _PokemonViewState();
 }
 
 class _PokemonViewState extends State<PokemonView> {
+  Future<PokemonSpecies> _species;
+  List<Move> _moves = [];
+  bool s = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    final AppState appState = StateUtils.appState(context);
+
+    _species = appState.getSpecies(widget.pokemon.species.url);
+  }
+
   @override
   Widget build(BuildContext context) {
     final Pokemon pokemon = widget.pokemon;
+    final String title = pokemon.name.capitalize().eliminateDashes();
+    final AppState appState = StateUtils.appState(context);
+
+    if (!s) {
+      s = true;
+
+      pokemon.moves.forEach((element) {
+        Move.get(QueryUtils.toId(element.move.url).toString()).then((value) {
+          setState(() {
+            _moves.add(value);
+          });
+        });
+      });
+    }
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(pokemon.name.capitalize().eliminateDashes()),
+        title: Text(title),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -30,6 +61,34 @@ class _PokemonViewState extends State<PokemonView> {
                 sprites: pokemon.sprites,
               ),
             ),
+            FutureBuilder(
+              future: _species,
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) return Text('carregou species ainda n');
+
+                final PokemonSpecies data = snapshot.data;
+                final List<Widget> children =
+                    data.flavorTextEntries.map((element) {
+                  return Text(element.flavorText.replaceAll('\n', ' ') +
+                      ' - Pokémon ' +
+                      element.version.name.capitalize().eliminateDashes());
+                }).toList();
+
+                return Container(
+                  height: 200,
+                  child: ListView.builder(
+                    itemCount: children.length,
+                    itemBuilder: (context, index) => children.elementAt(index),
+                  ),
+                );
+              },
+            ),
+            ListView.builder(
+              itemBuilder: (context, index) =>
+                  Text(_moves.elementAt(index).name),
+              itemCount: _moves.length,
+              shrinkWrap: true,
+            )
           ],
         ),
       ),
