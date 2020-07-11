@@ -1,22 +1,30 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_pokedex/utils/query.dart';
+import 'package:flutter_pokedex/state/app_state_utils.dart';
 import 'package:pokeapi_dart_lib/pokeapi_dart_lib.dart';
 
-mixin AppStateSpecies {
+class AppStateSpecies extends AppStateUtils with ChangeNotifier {
   Map<int, PokemonSpecies> _species = {};
 
   Map<int, PokemonSpecies> get species => _species;
 
-  Future<PokemonSpecies> getSpecies(String url) async {
-    final int id = QueryUtils.toId(url);
+  PokemonSpecies getSpecies(String url) {
+    final int id = toId(url);
+    final PokemonSpecies result = _species[id];
 
-    PokemonSpecies result = _species[id];
-
-    if (result == null) {
-      result = await compute(PokemonSpecies.get, id.toString());
-      _species[id] = result;
-    }
+    if (result == null) requestSpecies(url);
 
     return result;
+  }
+
+  void requestSpecies(String url) async {
+    final int id = toId(url);
+
+    if (notRequested(url)) {
+      PokemonSpecies.get(id.toString()).then((value) {
+        _species[id] = value;
+
+        notifyListeners();
+      }).catchError((e, s) => reqErrHandler(e, s, url));
+    }
   }
 }

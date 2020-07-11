@@ -4,10 +4,20 @@ import 'package:flutter_pokedex/state/app_state.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  final AppState appState = AppState();
+
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(
-        create: (context) => AppState(),
+        create: (context) => appState,
+        child: MyApp(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => appState.pokemon,
+        child: MyApp(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => appState.species,
         child: MyApp(),
       ),
     ],
