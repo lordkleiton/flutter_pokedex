@@ -19,7 +19,7 @@ class _HomeViewState extends State<HomeView> {
   void initState() {
     super.initState();
 
-    _initialPokemons = compute(PokemonUtils.find, {'limit': 151, 'skip': 0});
+    _initialPokemons = compute(PokemonUtils.find, {'limit': 1, 'skip': 0});
   }
 
   @override

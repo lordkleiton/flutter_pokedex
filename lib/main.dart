@@ -20,6 +20,10 @@ void main() {
         create: (context) => appState.species,
         child: MyApp(),
       ),
+      ChangeNotifierProvider(
+        create: (context) => appState.moves,
+        child: MyApp(),
+      ),
     ],
     child: MyApp(),
   ));

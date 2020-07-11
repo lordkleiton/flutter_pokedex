@@ -1,30 +1,40 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_pokedex/utils/query.dart';
+import 'package:flutter_pokedex/state/app_state_utils.dart';
 import 'package:pokeapi_dart_lib/pokeapi_dart_lib.dart';
 
-mixin AppStateMoves {
+class AppStateMoves extends AppStateUtils with ChangeNotifier {
   Map<int, Move> _moves = {};
 
   Map<int, Move> get moves => _moves;
 
-  Future<Move> getMove(String url) async {
-    final int id = QueryUtils.toId(url);
+  Move getMove(String url) {
+    final int id = toId(url);
+    final Move result = _moves[id];
 
-    Move result = _moves[id];
-
-    if (result == null) {
-      result = await compute(Move.get, id.toString());
-      _moves[id] = result;
-    }
+    if (result == null) requestMove(url);
 
     return result;
   }
 
-  Future<List<Move>> getMovesFromList(List<PokemonMove> moves) async {
+  void requestMove(String url) async {
+    final int id = toId(url);
+
+    if (notRequested(url)) {
+      Move.get(id.toString()).then((value) {
+        _moves[id] = value;
+
+        notifyListeners();
+      }).catchError((e, s) => reqErrHandler(e, s, url));
+    }
+  }
+
+  List<Move> getMovesFromList(List<PokemonMove> moves) {
     List<Move> result = [];
 
-    moves.forEach((element) async {
-      result.add(await getMove(element.move.url));
+    moves.forEach((m) {
+      final Move move = getMove(m.move.url);
+
+      if (move != null) result.add(move);
     });
 
     return result;
