@@ -19,7 +19,7 @@ class _HomeViewState extends State<HomeView> {
   void initState() {
     super.initState();
 
-    _initialPokemons = compute(PokemonUtils.find, {'limit': 1, 'skip': 0});
+    _initialPokemons = compute(PokemonUtils.find, {'limit': 151, 'skip': 0});
   }
 
   @override
@@ -47,8 +47,13 @@ class _HomeViewState extends State<HomeView> {
                 )
                 .toList();
 
-            return ListView.builder(
+            return GridView.builder(
               itemCount: children.length,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
+                crossAxisCount: 3,
+              ),
               itemBuilder: (context, index) => children.elementAt(index),
             );
           },
