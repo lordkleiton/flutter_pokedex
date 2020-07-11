@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_pokedex/components/pokemon/pokemon_sprite_gallery.dart';
 import 'package:flutter_pokedex/state/app_state.dart';
 import 'package:flutter_pokedex/utils/extensions.dart';
-import 'package:flutter_pokedex/utils/query.dart';
 import 'package:flutter_pokedex/utils/state.dart';
 import 'package:pokeapi_dart_lib/pokeapi_dart_lib.dart';
 
@@ -18,8 +17,6 @@ class PokemonView extends StatefulWidget {
 
 class _PokemonViewState extends State<PokemonView> {
   Future<PokemonSpecies> _species;
-  List<Move> _moves = [];
-  bool s = false;
 
   @override
   void didChangeDependencies() {
@@ -34,19 +31,6 @@ class _PokemonViewState extends State<PokemonView> {
   Widget build(BuildContext context) {
     final Pokemon pokemon = widget.pokemon;
     final String title = pokemon.name.capitalize().eliminateDashes();
-    final AppState appState = StateUtils.appState(context);
-
-    if (!s) {
-      s = true;
-
-      pokemon.moves.forEach((element) {
-        Move.get(QueryUtils.toId(element.move.url).toString()).then((value) {
-          setState(() {
-            _moves.add(value);
-          });
-        });
-      });
-    }
 
     return Scaffold(
       appBar: AppBar(
@@ -83,12 +67,6 @@ class _PokemonViewState extends State<PokemonView> {
                 );
               },
             ),
-            ListView.builder(
-              itemBuilder: (context, index) =>
-                  Text(_moves.elementAt(index).name),
-              itemCount: _moves.length,
-              shrinkWrap: true,
-            )
           ],
         ),
       ),
