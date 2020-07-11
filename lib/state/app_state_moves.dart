@@ -20,6 +20,8 @@ class AppStateMoves extends AppStateUtils with ChangeNotifier {
     final int id = toId(url);
 
     if (notRequested(url)) {
+      requested(url);
+
       Move.get(id.toString()).then((value) {
         _moves[id] = value;
 

@@ -20,6 +20,8 @@ class AppStatePokemon extends AppStateUtils with ChangeNotifier {
     final int id = toId(url);
 
     if (notRequested(url)) {
+      requested(url);
+
       Pokemon.get(id.toString()).then((value) {
         _pokemons[id] = value;
 
