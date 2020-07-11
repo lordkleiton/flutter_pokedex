@@ -7,6 +7,15 @@ class AppStatePokemon extends AppStateUtils with ChangeNotifier {
 
   Map<int, Pokemon> get pokemons => _pokemons;
 
+  Pokemon getPokemon(String url) {
+    final int id = toId(url);
+    final Pokemon result = _pokemons[id];
+
+    if (result == null) requestPokemon(url);
+
+    return result;
+  }
+
   void requestPokemon(String url) async {
     final int id = toId(url);
 
@@ -17,14 +26,5 @@ class AppStatePokemon extends AppStateUtils with ChangeNotifier {
         notifyListeners();
       }).catchError((e, s) => reqErrHandler(e, s, url));
     }
-  }
-
-  Pokemon getPokemon(String url) {
-    final int id = toId(url);
-    final Pokemon result = _pokemons[id];
-
-    if (result == null) requestPokemon(url);
-
-    return result;
   }
 }
