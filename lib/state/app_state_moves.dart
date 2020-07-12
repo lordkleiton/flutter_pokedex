@@ -6,7 +6,7 @@ class AppStateMoves extends AppStateUtils {
 
   Map<int, Move> get moves => _moves;
 
-  Move get(String url) => getSingle<Pokemon>(Move.get, url, _moves);
+  Move get(String url) => getSingle<Move>(Move.get, url, _moves);
 
   List<Move> getMovesFromList(List<PokemonMove> moves) {
     List<Move> result = [];
