@@ -6,12 +6,5 @@ class AppStatePokemon extends AppStateUtils {
 
   Map<int, Pokemon> get pokemons => _pokemons;
 
-  Pokemon get(String url) {
-    final int id = toId(url);
-    final Pokemon result = _pokemons[id];
-
-    if (result == null) getSingle(Pokemon.get, url, _pokemons);
-
-    return result;
-  }
+  Pokemon get(String url) => getSingle<Pokemon>(Pokemon.get, url, _pokemons);
 }

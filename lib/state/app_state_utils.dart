@@ -8,7 +8,16 @@ class AppStateUtils with ChangeNotifier {
 
   int toId(String url) => QueryUtils.toId(url);
 
-  void getSingle(Function future, String url, dynamic property) {
+  dynamic getSingle<T>(Function future, String url, dynamic property) {
+    final int id = toId(url);
+    final T result = property[id];
+
+    if (result == null) _getSingle(future, url, property);
+
+    return result;
+  }
+
+  void _getSingle(Function future, String url, dynamic property) {
     final int id = toId(url);
 
     if (_notRequested(id)) {
