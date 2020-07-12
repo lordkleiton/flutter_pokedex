@@ -6,34 +6,20 @@ class AppStateMoves extends AppStateUtils {
 
   Map<int, Move> get moves => _moves;
 
-  Move getMove(String url) {
+  Move get(String url) {
     final int id = toId(url);
     final Move result = _moves[id];
 
-    if (result == null) requestMove(url);
+    if (result == null) getSingle(Move.get, url, _moves);
 
     return result;
-  }
-
-  void requestMove(String url) async {
-    final int id = toId(url);
-
-    if (notRequested(id)) {
-      requested(url);
-
-      Move.get(id.toString()).then((value) {
-        _moves[id] = value;
-
-        notifyListeners();
-      }).catchError((e, s) => reqErrHandler(e, s, id));
-    }
   }
 
   List<Move> getMovesFromList(List<PokemonMove> moves) {
     List<Move> result = [];
 
     moves.forEach((m) {
-      final Move move = getMove(m.move.url);
+      final Move move = get(m.move.url);
 
       if (move != null) result.add(move);
     });

@@ -22,7 +22,7 @@ class _PokemonViewState extends State<PokemonView> {
     final Pokemon pokemon = widget.pokemon;
     final String title = pokemon.name.capitalize().eliminateDashes();
     final AppStateSpecies appState = Provider.of<AppStateSpecies>(context);
-    final PokemonSpecies species = appState.getSpecies(pokemon.species.url);
+    final PokemonSpecies species = appState.get(pokemon.species.url);
     final List<Widget> children = species != null
         ? species.flavorTextEntries.map((element) {
             return Text(element.flavorText.replaceAll('\n', ' ') +

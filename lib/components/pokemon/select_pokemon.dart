@@ -13,8 +13,8 @@ class SelectPokemonComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AppStatePokemon appState = Provider.of<AppStatePokemon>(context);
-    final Pokemon pokemon = appState.getPokemon(data.url);
+    final AppStatePokemon state = Provider.of<AppStatePokemon>(context);
+    final Pokemon pokemon = state.get(data.url);
     final double width = 100.0;
     final double heigth = 100.0;
     final double padding = 10.0;

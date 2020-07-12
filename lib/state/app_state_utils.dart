@@ -4,18 +4,28 @@ import 'package:flutter_pokedex/utils/query.dart';
 class AppStateUtils with ChangeNotifier {
   Map<int, String> _requested = {};
 
-  void requested(String url) {
-    _requested[toId(url)] = url;
-  }
-
-  bool notRequested(int id) => _requested[id] == null;
+  bool _notRequested(int id) => _requested[id] == null;
 
   int toId(String url) => QueryUtils.toId(url);
 
-  void reqErrHandler(err, stack, int id) {
-    print(err);
-    print(stack);
+  void getSingle(Function future, String url, dynamic property) {
+    final int id = toId(url);
 
-    _requested.remove(id);
+    if (_notRequested(id)) {
+      print(id);
+
+      _requested[toId(url)] = url;
+
+      future(id.toString()).then((value) {
+        property[id] = value;
+
+        notifyListeners();
+      }).catchError((err, stack) {
+        print(err);
+        print(stack);
+
+        _requested.remove(id);
+      });
+    }
   }
 }
