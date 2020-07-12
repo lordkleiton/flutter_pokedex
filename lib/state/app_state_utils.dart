@@ -8,6 +8,7 @@ class AppStateUtils with ChangeNotifier {
 
   int toId(String url) => QueryUtils.toId(url);
 
+  @protected
   dynamic getSingle<T>(Function future, String url, dynamic property) {
     final int id = toId(url);
     final T result = property[id];
@@ -21,9 +22,7 @@ class AppStateUtils with ChangeNotifier {
     final int id = toId(url);
 
     if (_notRequested(id)) {
-      print(id);
-
-      _requested[toId(url)] = url;
+      _requested[id] = url;
 
       future(id.toString()).then((value) {
         property[id] = value;
