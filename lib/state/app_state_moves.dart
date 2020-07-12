@@ -1,8 +1,7 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter_pokedex/state/app_state_utils.dart';
 import 'package:pokeapi_dart_lib/pokeapi_dart_lib.dart';
 
-class AppStateMoves extends AppStateUtils with ChangeNotifier {
+class AppStateMoves extends AppStateUtils {
   Map<int, Move> _moves = {};
 
   Map<int, Move> get moves => _moves;

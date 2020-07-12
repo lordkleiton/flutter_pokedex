@@ -9,27 +9,20 @@ void main() {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(
-        create: (context) => appState,
-        child: MyApp(),
-      ),
-      ChangeNotifierProvider(
         create: (context) => appState.pokemon,
-        child: MyApp(),
       ),
       ChangeNotifierProvider(
         create: (context) => appState.species,
-        child: MyApp(),
       ),
       ChangeNotifierProvider(
         create: (context) => appState.moves,
-        child: MyApp(),
       ),
     ],
-    child: MyApp(),
+    child: FlutterPokedex(),
   ));
 }
 
-class MyApp extends StatelessWidget {
+class FlutterPokedex extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

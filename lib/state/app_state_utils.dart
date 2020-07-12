@@ -1,6 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_pokedex/utils/query.dart';
 
-class AppStateUtils {
+class AppStateUtils with ChangeNotifier {
   Map<int, String> _requested = {};
 
   void requested(String url) {

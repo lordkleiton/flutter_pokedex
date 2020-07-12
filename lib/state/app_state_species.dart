@@ -1,8 +1,7 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter_pokedex/state/app_state_utils.dart';
 import 'package:pokeapi_dart_lib/pokeapi_dart_lib.dart';
 
-class AppStateSpecies extends AppStateUtils with ChangeNotifier {
+class AppStateSpecies extends AppStateUtils {
   Map<int, PokemonSpecies> _species = {};
 
   Map<int, PokemonSpecies> get species => _species;
