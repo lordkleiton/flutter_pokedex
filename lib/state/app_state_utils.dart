@@ -1,20 +1,20 @@
 import 'package:flutter_pokedex/utils/query.dart';
 
 class AppStateUtils {
-  List<String> _requested = [];
+  Map<int, String> _requested = {};
 
   void requested(String url) {
-    _requested.add(url);
+    _requested[toId(url)] = url;
   }
 
-  bool notRequested(String url) => !_requested.contains(url);
+  bool notRequested(int id) => _requested[id] == null;
 
   int toId(String url) => QueryUtils.toId(url);
 
-  void reqErrHandler(err, stack, url) {
+  void reqErrHandler(err, stack, int id) {
     print(err);
     print(stack);
 
-    _requested.remove(url);
+    _requested.remove(id);
   }
 }
