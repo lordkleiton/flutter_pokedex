@@ -4,15 +4,29 @@ import 'package:flutter_pokedex/components/utils/loading_spinner_circle.dart';
 
 class SpriteWidget extends StatelessWidget {
   final String url;
+  final bool popup;
 
-  SpriteWidget({Key key, @required this.url}) : super(key: key);
+  SpriteWidget({Key key, @required this.url, this.popup = true})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return CachedNetworkImage(
-      placeholder: (context, url) => LoadingIndicatorWidget(),
-      fit: BoxFit.contain,
-      imageUrl: url,
+    return GestureDetector(
+      child: CachedNetworkImage(
+        placeholder: (context, url) => LoadingIndicatorWidget(),
+        fit: BoxFit.contain,
+        imageUrl: url,
+      ),
+      onTap: popup
+          ? () {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) => Dialog(
+                  child: SpriteWidget(url: url, popup: false),
+                ),
+              );
+            }
+          : null,
     );
   }
 }

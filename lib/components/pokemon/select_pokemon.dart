@@ -35,6 +35,7 @@ class SelectPokemonComponent extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: padding),
         child: SpriteWidget(
           url: pokemon.sprites.frontDefault,
+          popup: false,
         ),
       ),
       onTap: () {
