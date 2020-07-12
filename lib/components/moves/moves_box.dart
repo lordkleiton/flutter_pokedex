@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pokedex/state/app_state.dart';
 import 'package:flutter_pokedex/state/app_state_moves.dart';
 import 'package:pokeapi_dart_lib/pokeapi_dart_lib.dart';
 import 'package:flutter_pokedex/utils/extensions.dart';
