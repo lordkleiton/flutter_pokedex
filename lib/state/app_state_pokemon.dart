@@ -19,14 +19,14 @@ class AppStatePokemon extends AppStateUtils with ChangeNotifier {
   void requestPokemon(String url) async {
     final int id = toId(url);
 
-    if (notRequested(url)) {
+    if (notRequested(id)) {
       requested(url);
 
       Pokemon.get(id.toString()).then((value) {
         _pokemons[id] = value;
 
         notifyListeners();
-      }).catchError((e, s) => reqErrHandler(e, s, url));
+      }).catchError((e, s) => reqErrHandler(e, s, id));
     }
   }
 }

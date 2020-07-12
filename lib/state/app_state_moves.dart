@@ -19,14 +19,14 @@ class AppStateMoves extends AppStateUtils with ChangeNotifier {
   void requestMove(String url) async {
     final int id = toId(url);
 
-    if (notRequested(url)) {
+    if (notRequested(id)) {
       requested(url);
 
       Move.get(id.toString()).then((value) {
         _moves[id] = value;
 
         notifyListeners();
-      }).catchError((e, s) => reqErrHandler(e, s, url));
+      }).catchError((e, s) => reqErrHandler(e, s, id));
     }
   }
 

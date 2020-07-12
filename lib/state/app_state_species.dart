@@ -19,14 +19,14 @@ class AppStateSpecies extends AppStateUtils with ChangeNotifier {
   void requestSpecies(String url) async {
     final int id = toId(url);
 
-    if (notRequested(url)) {
+    if (notRequested(id)) {
       requested(url);
 
       PokemonSpecies.get(id.toString()).then((value) {
         _species[id] = value;
 
         notifyListeners();
-      }).catchError((e, s) => reqErrHandler(e, s, url));
+      }).catchError((e, s) => reqErrHandler(e, s, id));
     }
   }
 }
