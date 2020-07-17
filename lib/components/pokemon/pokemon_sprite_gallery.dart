@@ -21,7 +21,6 @@ class PokemonSpriteGalleryWidget extends StatelessWidget {
   PokemonSpriteGalleryWidget({Key key, @required this.sprites})
       : super(key: key);
 
-  @override
   Widget build(BuildContext context) {
     List<_SpriteAux> data = [];
     List<Widget> widgets = [];

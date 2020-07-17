@@ -9,7 +9,6 @@ class TypeBadgeWidget extends StatelessWidget {
 
   TypeBadgeWidget({Key key, this.type}) : super(key: key);
 
-  @override
   Widget build(BuildContext context) {
     final Types _type = TypeUtils.toEnum(type);
 

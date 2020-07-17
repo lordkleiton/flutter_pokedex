@@ -6,7 +6,6 @@ class SpriteGalleryWidget extends StatelessWidget {
   SpriteGalleryWidget({Key key, @required this.spriteWidgets})
       : super(key: key);
 
-  @override
   Widget build(BuildContext context) => ListView.separated(
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) => Container(

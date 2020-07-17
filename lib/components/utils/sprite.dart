@@ -9,7 +9,6 @@ class SpriteWidget extends StatelessWidget {
   SpriteWidget({Key key, @required this.url, this.popup = true})
       : super(key: key);
 
-  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       child: CachedNetworkImage(

@@ -10,7 +10,6 @@ class PokemonDescriptionBoxWidget extends StatelessWidget {
   PokemonDescriptionBoxWidget({Key key, @required this.pokemon})
       : super(key: key);
 
-  @override
   Widget build(BuildContext context) {
     final AppStateSpecies state = Provider.of(context);
     final PokemonSpecies species = state.get(pokemon.species.url);

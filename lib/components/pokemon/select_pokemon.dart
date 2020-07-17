@@ -13,7 +13,6 @@ class SelectPokemonComponent extends StatelessWidget {
 
   SelectPokemonComponent({Key key, @required this.data}) : super(key: key);
 
-  @override
   Widget build(BuildContext context) {
     final AppStatePokemon state = Provider.of(context);
     final Pokemon pokemon = state.get(data.url);

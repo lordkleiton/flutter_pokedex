@@ -8,21 +8,18 @@ import 'package:pokeapi_dart_lib/pokeapi_dart_lib.dart';
 class HomeView extends StatefulWidget {
   HomeView({Key key}) : super(key: key);
 
-  @override
   _HomeViewState createState() => _HomeViewState();
 }
 
 class _HomeViewState extends State<HomeView> {
   Future<NamedApiResourceList> _initialPokemons;
 
-  @override
   void initState() {
     super.initState();
 
     _initialPokemons = compute(PokemonUtils.find, {'limit': 151, 'skip': 0});
   }
 
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

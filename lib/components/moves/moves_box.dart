@@ -8,12 +8,10 @@ class MovesBoxWidget extends StatefulWidget {
   final Pokemon pokemon;
   MovesBoxWidget({Key key, @required this.pokemon}) : super(key: key);
 
-  @override
   _MovesBoxWidget createState() => _MovesBoxWidget();
 }
 
 class _MovesBoxWidget extends State<MovesBoxWidget> {
-  @override
   Widget build(BuildContext context) {
     final Pokemon pokemon = widget.pokemon;
     final AppStateMoves appMoves = Provider.of(context);
