@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_pokedex/components/type/badge.dart';
+import 'package:flutter_pokedex/components/type/type_badges.dart';
 import 'package:flutter_pokedex/components/utils/loading_spinner_circle.dart';
 import 'package:flutter_pokedex/components/utils/sprite.dart';
 import 'package:flutter_pokedex/state/app_state_pokemon.dart';
@@ -29,27 +29,54 @@ class SelectPokemonComponent extends StatelessWidget {
       );
     }
 
-    List<Widget> types = pokemon.types.map((element) {
-      return TypeBadgeWidget(
-        type: element.type.name,
-      );
-    }).toList();
-
     return InkWell(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Container(
-            width: width,
-            height: heigth,
-            child: SpriteWidget(
-              url: pokemon.sprites.frontDefault,
-              popup: false,
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        child: Row(
+          children: <Widget>[
+            Container(
+              width: width,
+              height: heigth,
+              child: SpriteWidget(
+                url: pokemon.sprites.frontDefault,
+                popup: false,
+              ),
             ),
-          ),
-          Text(PokemonUtils.name(pokemon)),
-          ...types,
-        ],
+            SizedBox(
+              width: 10,
+            ),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    PokemonUtils.name(pokemon),
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Text(
+                        '#${pokemon.id.toString()}',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Spacer(),
+                      TypeBadgesWidget(
+                        types: pokemon.types,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
       onTap: () {
         Navigator.of(context)

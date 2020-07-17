@@ -26,7 +26,8 @@ class _HomeViewState extends State<HomeView> {
         title: Text('pokemon'),
       ),
       body: Container(
-        height: 500,
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
         child: FutureBuilder(
           future: _initialPokemons,
           builder: (context, snapshot) {
@@ -44,21 +45,13 @@ class _HomeViewState extends State<HomeView> {
                 )
                 .toList();
 
-            return ListView.builder(
+            return ListView.separated(
+              separatorBuilder: (contex, index) => Divider(
+                height: 1,
+              ),
               itemCount: children.length,
               itemBuilder: (context, index) => children.elementAt(index),
             );
-
-            /* return GridView.builder(
-              itemCount: children.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-                crossAxisCount: 3,
-                childAspectRatio: 0.7,
-              ),
-              itemBuilder: (context, index) => children.elementAt(index),
-            ); */
           },
         ),
       ),

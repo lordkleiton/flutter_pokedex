@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pokedex/settings.dart';
 import 'package:flutter_pokedex/utils/classes/colors.dart';
 import 'package:flutter_pokedex/utils/classes/extensions.dart';
 import 'package:flutter_pokedex/utils/classes/types.dart';
@@ -14,7 +15,7 @@ class TypeBadgeWidget extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(Settings.borderRadius),
         border: Border.all(color: ColorUtils.typeBorderColor(_type)),
         color: ColorUtils.typeColor(_type),
       ),
