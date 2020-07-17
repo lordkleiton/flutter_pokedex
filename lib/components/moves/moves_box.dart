@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pokedex/state/app_state_moves.dart';
 import 'package:pokeapi_dart_lib/pokeapi_dart_lib.dart';
-import 'package:flutter_pokedex/utils/extensions.dart';
+import 'package:flutter_pokedex/utils/classes/extensions.dart';
 import 'package:provider/provider.dart';
 
 class MovesBoxWidget extends StatefulWidget {

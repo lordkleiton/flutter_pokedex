@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_pokedex/state/app_state_species.dart';
 import 'package:pokeapi_dart_lib/pokeapi_dart_lib.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_pokedex/utils/extensions.dart';
+import 'package:flutter_pokedex/utils/classes/extensions.dart';
 
 class PokemonDescriptionBoxWidget extends StatelessWidget {
   final Pokemon pokemon;
