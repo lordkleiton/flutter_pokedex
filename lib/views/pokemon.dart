@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_pokedex/components/moves/moves_box.dart';
 import 'package:flutter_pokedex/components/pokemon/pokemon_description_box.dart';
 import 'package:flutter_pokedex/components/pokemon/pokemon_sprite_gallery.dart';
-import 'package:flutter_pokedex/utils/extensions.dart';
+import 'package:flutter_pokedex/utils/pokemon.dart';
 import 'package:pokeapi_dart_lib/pokeapi_dart_lib.dart';
 
 class PokemonView extends StatefulWidget {
@@ -19,11 +19,10 @@ class _PokemonViewState extends State<PokemonView> {
   @override
   Widget build(BuildContext context) {
     final Pokemon pokemon = widget.pokemon;
-    final String title = pokemon.name.capitalize().eliminateDashes();
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text(PokemonUtils.name(pokemon)),
       ),
       body: SingleChildScrollView(
         child: Column(

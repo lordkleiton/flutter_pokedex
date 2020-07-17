@@ -47,15 +47,21 @@ class _HomeViewState extends State<HomeView> {
                 )
                 .toList();
 
-            return GridView.builder(
+            return ListView.builder(
+              itemCount: children.length,
+              itemBuilder: (context, index) => children.elementAt(index),
+            );
+
+            /* return GridView.builder(
               itemCount: children.length,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 10,
                 crossAxisCount: 3,
+                childAspectRatio: 0.7,
               ),
               itemBuilder: (context, index) => children.elementAt(index),
-            );
+            ); */
           },
         ),
       ),
