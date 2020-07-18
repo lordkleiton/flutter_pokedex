@@ -17,6 +17,9 @@ void main() {
       ChangeNotifierProvider(
         create: (context) => appState.moves,
       ),
+      ChangeNotifierProvider(
+        create: (context) => appState.types,
+      ),
     ],
     child: FlutterPokedex(),
   ));

@@ -15,7 +15,7 @@ class MoveWidget extends StatelessWidget {
         Text(move.power.toString()),
         Text(move.pp.toString()),
         TypeBadgeWidget(
-          type: move.type.name,
+          type: move.type,
         )
       ],
     );

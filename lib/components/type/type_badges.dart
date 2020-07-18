@@ -13,7 +13,7 @@ class TypeBadgesWidget extends StatelessWidget {
 
     if (types.isNotEmpty) {
       _types.add(TypeBadgeWidget(
-        type: types.first.type.name,
+        type: types.first.type,
       ));
     }
 
@@ -23,7 +23,7 @@ class TypeBadgesWidget extends StatelessWidget {
           width: Settings.typeSpacing,
         ),
         TypeBadgeWidget(
-          type: types.last.type.name,
+          type: types.last.type,
         )
       ]);
     }
