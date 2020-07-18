@@ -9,7 +9,6 @@ class SpriteGalleryWidget extends StatelessWidget {
   Widget build(BuildContext context) => ListView.separated(
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) => Container(
-          width: MediaQuery.of(context).size.width * 0.4,
           height: 100,
           child: spriteWidgets.elementAt(index),
         ),

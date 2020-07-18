@@ -128,8 +128,16 @@ class PokemonSpriteGalleryWidget extends StatelessWidget {
         )
         .toList();
 
-    return SpriteGalleryWidget(
-      spriteWidgets: widgets,
+    return Column(
+      children: <Widget>[
+        Text('Sprite gallery'),
+        Container(
+          height: 150,
+          child: SpriteGalleryWidget(
+            spriteWidgets: widgets,
+          ),
+        )
+      ],
     );
   }
 }

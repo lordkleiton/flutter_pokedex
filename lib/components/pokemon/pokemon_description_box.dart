@@ -24,12 +24,17 @@ class PokemonDescriptionBoxWidget extends StatelessWidget {
           }).toList()
         : [];
 
-    return Container(
-      height: 200,
-      child: ListView.builder(
-        itemCount: children.length,
-        itemBuilder: (context, index) => children.elementAt(index),
-      ),
+    return Column(
+      children: <Widget>[
+        Text('Descriptions'),
+        Container(
+          height: 200,
+          child: ListView.builder(
+            itemCount: children.length,
+            itemBuilder: (context, index) => children.elementAt(index),
+          ),
+        )
+      ],
     );
   }
 }

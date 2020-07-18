@@ -25,11 +25,8 @@ class _State extends State<PokemonView> {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Container(
-              height: 200,
-              child: PokemonSpriteGalleryWidget(
-                sprites: pokemon.sprites,
-              ),
+            PokemonSpriteGalleryWidget(
+              sprites: pokemon.sprites,
             ),
             PokemonDescriptionBoxWidget(
               pokemon: pokemon,
