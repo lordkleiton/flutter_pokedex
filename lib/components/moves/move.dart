@@ -9,15 +9,70 @@ class MoveWidget extends StatelessWidget {
   MoveWidget({Key key, this.move}) : super(key: key);
 
   Widget build(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        Text(move.name.capitalize().eliminateDashes()),
-        Text(move.power.toString()),
-        Text(move.pp.toString()),
-        TypeBadgeWidget(
-          type: move.type,
-        )
-      ],
+    return InkWell(
+      onTap: () {},
+      child: Container(
+        padding: EdgeInsets.all(10),
+        width: MediaQuery.of(context).size.width,
+        child: Row(
+          children: <Widget>[
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Container(
+                        child: Text(
+                          move.name.capitalize().eliminateDashes(),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 15),
+                        ),
+                      )
+                    ],
+                  ),
+                  Row(
+                    children: <Widget>[
+                      _text('PP', move.pp.toString()),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      _text('Power',
+                          move.power == null ? '-' : move.power.toString()),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                TypeBadgeWidget(
+                  type: move.type,
+                )
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _text(String key, String value) {
+    return Container(
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Text(
+            '$key: ',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+          ),
+          Text(
+            value,
+            style: TextStyle(fontSize: 12),
+          ),
+        ],
+      ),
     );
   }
 }

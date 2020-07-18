@@ -23,7 +23,10 @@ class _State extends State<MovesBoxWidget> {
         Text('Moves'),
         Container(
           height: 200,
-          child: ListView.builder(
+          child: ListView.separated(
+            separatorBuilder: (context, index) => Divider(
+              height: 1,
+            ),
             itemCount: moves.length,
             itemBuilder: (context, index) => MoveWidget(
               move: moves.elementAt(index),
