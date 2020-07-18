@@ -10,8 +10,10 @@ import 'package:provider/provider.dart';
 
 class TypeBadgeWidget extends StatelessWidget {
   final NamedApiResource type;
+  final bool clickable;
 
-  TypeBadgeWidget({Key key, this.type}) : super(key: key);
+  TypeBadgeWidget({Key key, this.type, this.clickable = true})
+      : super(key: key);
 
   Widget build(BuildContext context) {
     final AppStateTypes state = Provider.of(context);
@@ -19,17 +21,25 @@ class TypeBadgeWidget extends StatelessWidget {
     final String name = _type?.name ?? type.name;
     final Types _types = TypeUtils.toEnum(name);
 
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(Settings.borderRadius),
-        border: Border.all(color: ColorUtils.typeBorderColor(_types)),
-        color: ColorUtils.typeColor(_types),
-      ),
-      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-      child: Text(
-        name.capitalize(),
-        style: TextStyle(
-          color: Colors.white,
+    return InkWell(
+      onTap: clickable
+          ? () {
+              Navigator.of(context)
+                  .pushNamed('/type', arguments: {'type': type});
+            }
+          : null,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(Settings.borderRadius),
+          border: Border.all(color: ColorUtils.typeBorderColor(_types)),
+          color: ColorUtils.typeColor(_types),
+        ),
+        padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+        child: Text(
+          name.capitalize(),
+          style: TextStyle(
+            color: Colors.white,
+          ),
         ),
       ),
     );

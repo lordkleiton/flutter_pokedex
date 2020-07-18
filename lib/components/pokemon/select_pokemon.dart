@@ -69,6 +69,7 @@ class SelectPokemonComponent extends StatelessWidget {
                       Spacer(),
                       TypeBadgesWidget(
                         types: pokemon.types,
+                        clickable: false,
                       ),
                     ],
                   ),

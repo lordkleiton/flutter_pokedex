@@ -5,8 +5,10 @@ import 'badge.dart';
 
 class TypeBadgesWidget extends StatelessWidget {
   final List<PokemonType> types;
+  final bool clickable;
 
-  TypeBadgesWidget({Key key, this.types}) : super(key: key);
+  TypeBadgesWidget({Key key, this.types, this.clickable = true})
+      : super(key: key);
 
   Widget build(BuildContext context) {
     List<Widget> _types = [];
@@ -28,9 +30,12 @@ class TypeBadgesWidget extends StatelessWidget {
       ]);
     }
 
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: _types,
+    return AbsorbPointer(
+      absorbing: !clickable,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: _types,
+      ),
     );
   }
 }
