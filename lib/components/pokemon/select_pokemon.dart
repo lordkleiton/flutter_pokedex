@@ -43,7 +43,7 @@ class SelectPokemonComponent extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: 10,
+              width: padding,
             ),
             Expanded(
               child: Column(

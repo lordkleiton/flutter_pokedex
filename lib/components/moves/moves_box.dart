@@ -8,10 +8,10 @@ class MovesBoxWidget extends StatefulWidget {
   final Pokemon pokemon;
   MovesBoxWidget({Key key, @required this.pokemon}) : super(key: key);
 
-  _MovesBoxWidget createState() => _MovesBoxWidget();
+  _State createState() => _State();
 }
 
-class _MovesBoxWidget extends State<MovesBoxWidget> {
+class _State extends State<MovesBoxWidget> {
   Widget build(BuildContext context) {
     final Pokemon pokemon = widget.pokemon;
     final AppStateMoves appMoves = Provider.of(context);

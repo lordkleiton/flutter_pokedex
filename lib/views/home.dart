@@ -8,10 +8,10 @@ import 'package:pokeapi_dart_lib/pokeapi_dart_lib.dart';
 class HomeView extends StatefulWidget {
   HomeView({Key key}) : super(key: key);
 
-  _HomeViewState createState() => _HomeViewState();
+  _State createState() => _State();
 }
 
-class _HomeViewState extends State<HomeView> {
+class _State extends State<HomeView> {
   Future<NamedApiResourceList> _initialPokemons;
 
   void initState() {

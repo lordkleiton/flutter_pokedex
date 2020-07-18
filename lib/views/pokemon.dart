@@ -11,10 +11,10 @@ class PokemonView extends StatefulWidget {
 
   PokemonView({Key key, @required this.pokemon}) : super(key: key);
 
-  _PokemonViewState createState() => _PokemonViewState();
+  _State createState() => _State();
 }
 
-class _PokemonViewState extends State<PokemonView> {
+class _State extends State<PokemonView> {
   Widget build(BuildContext context) {
     final Pokemon pokemon = widget.pokemon;
 
