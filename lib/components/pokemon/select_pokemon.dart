@@ -8,8 +8,6 @@ import 'package:flutter_pokedex/utils/pokemon.dart';
 import 'package:pokeapi_dart_lib/pokeapi_dart_lib.dart';
 import 'package:provider/provider.dart';
 
-import '../utils/loading_spinner_circle.dart';
-
 class SelectPokemonComponent extends StatelessWidget {
   final NamedApiResource data;
 
@@ -57,7 +55,7 @@ class SelectPokemonComponent extends StatelessWidget {
                     Row(
                       children: <Widget>[
                         Text(
-                          '#${pokemon.id.toString()}',
+                          '#${pokemon.id}',
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
