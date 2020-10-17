@@ -37,20 +37,15 @@ class _State extends State<HomeView> {
               );
 
             final NamedApiResourceList data = snapshot.data;
-            final List<Widget> children = data.results
-                .map(
-                  (e) => SelectPokemonComponent(
-                    data: e,
-                  ),
-                )
-                .toList();
 
             return ListView.separated(
               separatorBuilder: (contex, index) => Divider(
                 height: 1,
               ),
-              itemCount: children.length,
-              itemBuilder: (context, index) => children.elementAt(index),
+              itemCount: data.results.length,
+              itemBuilder: (context, index) => SelectPokemonComponent(
+                data: data.results.elementAt(index),
+              ),
             );
           },
         ),
