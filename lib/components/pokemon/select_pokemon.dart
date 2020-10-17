@@ -8,6 +8,8 @@ import 'package:flutter_pokedex/utils/pokemon.dart';
 import 'package:pokeapi_dart_lib/pokeapi_dart_lib.dart';
 import 'package:provider/provider.dart';
 
+import '../utils/loading_spinner_circle.dart';
+
 class SelectPokemonComponent extends StatelessWidget {
   final NamedApiResource data;
 
@@ -16,18 +18,10 @@ class SelectPokemonComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     final AppStatePokemon state = Provider.of(context);
     final Pokemon pokemon = state.get(data.url);
+    final bool hasPokemon = pokemon != null;
     final double width = 100;
     final double heigth = 100;
     final double padding = 10.0;
-
-    if (pokemon == null) {
-      return Container(
-        width: width,
-        height: heigth,
-        padding: EdgeInsets.symmetric(vertical: padding),
-        child: LoadingIndicatorWidget(),
-      );
-    }
 
     return InkWell(
       child: Container(
@@ -37,52 +31,57 @@ class SelectPokemonComponent extends StatelessWidget {
             Container(
               width: width,
               height: heigth,
-              child: SpriteWidget(
-                url: pokemon.sprites.frontDefault,
-                popup: false,
-              ),
+              child: hasPokemon
+                  ? SpriteWidget(
+                      url: pokemon.sprites.frontDefault,
+                      popup: false,
+                    )
+                  : LoadingIndicatorWidget(),
             ),
             SizedBox(
               width: padding,
             ),
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    PokemonUtils.name(pokemon),
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+            if (hasPokemon)
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      PokemonUtils.name(pokemon),
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Text(
-                        '#${pokemon.id.toString()}',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
+                    Row(
+                      children: <Widget>[
+                        Text(
+                          '#${pokemon.id.toString()}',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                      Spacer(),
-                      TypeBadgesWidget(
-                        types: pokemon.types,
-                        clickable: false,
-                      ),
-                    ],
-                  ),
-                ],
+                        Spacer(),
+                        TypeBadgesWidget(
+                          types: pokemon.types,
+                          clickable: false,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
           ],
         ),
       ),
-      onTap: () {
-        Navigator.of(context)
-            .pushNamed('/pokemon', arguments: {'pokemon': pokemon});
-      },
+      onTap: hasPokemon
+          ? () {
+              Navigator.of(context)
+                  .pushNamed('/pokemon', arguments: {'pokemon': pokemon});
+            }
+          : null,
     );
   }
 }
