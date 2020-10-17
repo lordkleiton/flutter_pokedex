@@ -13,16 +13,12 @@ class PokemonDescriptionBoxWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final AppStateSpecies state = Provider.of(context);
     final PokemonSpecies species = state.get(pokemon.species.url);
-    final List<Widget> children = species != null
-        ? species.flavorTextEntries
-            .where((element) => element.language.name == 'en')
-            .toList()
-            .map((element) {
-            return Text(element.flavorText.replaceAll('\n', ' ') +
-                ' - Pokémon ' +
-                element.version.name.capitalize().eliminateDashes());
-          }).toList()
-        : [];
+    final List<Widget> children = species?.flavorTextEntries
+            ?.where((e) => e?.language?.name == 'en')
+            ?.map((e) => Text(
+                '${e?.flavorText?.replaceAll('\n', ' ')} - Pokémon ${e?.version?.name?.capitalize()?.eliminateDashes()}'))
+            ?.toList() ??
+        [];
 
     return Column(
       children: <Widget>[
