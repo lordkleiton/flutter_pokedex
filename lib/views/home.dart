@@ -21,13 +21,15 @@ class _State extends State<HomeView> {
   }
 
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('pokemon'),
       ),
       body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
+        height: size.height,
+        width: size.width,
         child: FutureBuilder(
           future: _initialPokemons,
           builder: (context, snapshot) {
@@ -39,8 +41,11 @@ class _State extends State<HomeView> {
             final NamedApiResourceList data = snapshot.data;
 
             return ListView.separated(
-              separatorBuilder: (contex, index) => Divider(
-                height: 1,
+              separatorBuilder: (contex, index) => Container(
+                padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
+                child: Divider(
+                  height: 1,
+                ),
               ),
               itemCount: data.results.length,
               itemBuilder: (context, index) => SelectPokemonComponent(
